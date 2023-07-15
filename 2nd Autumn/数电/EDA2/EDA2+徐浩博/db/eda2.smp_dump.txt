@@ -1,0 +1,9 @@
+
+State Machine - |eda2|FSM:my_FSM|state
+Name state.BUY_25c state.BUY_15c state.GOT_50c state.GOT_10c state.GOT_5c state.000 
+state.000 0 0 0 0 0 0 
+state.GOT_5c 0 0 0 0 1 1 
+state.GOT_10c 0 0 0 1 0 1 
+state.GOT_50c 0 0 1 0 0 1 
+state.BUY_15c 0 1 0 0 0 1 
+state.BUY_25c 1 0 0 0 0 1 

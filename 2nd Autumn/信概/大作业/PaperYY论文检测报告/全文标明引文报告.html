@@ -1,0 +1,754 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>全文标明引文报告</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="toTop" content="true">
+    <link href="css/index_2018051810.css" type="text/css" rel="stylesheet"/>
+    <script src="js/jquery1.42.min.js" type="text/javascript"></script>
+    <script src="js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+    <script src="js/esl.js" type="text/javascript"></script>
+        <script src="js/toTop.js" type="text/javascript"></script>
+    <!--解决IE 6不支持png格式的代码-->
+    <!--[if IE 6]>-->
+    <script src="js/png.js" type="text/javascript"></script>
+    <script>
+        var linkUrl = 'https://www.paperyy.com/paper_service.aspx';
+        var domainUrl = linkUrl.substring(linkUrl.indexOf("//") + 2, linkUrl.indexOf("/", linkUrl.indexOf("//") + 2));
+        DD_belatedPNG.fix('.pngfix');
+
+        function ShowCharts1() {
+            var pieData = [];
+            pieData[0] = {
+                value: 8086,
+                name: '原创'
+            };
+            pieData[1] = {
+                value: 113,
+                name: '重复'
+            };
+            // 路径配置
+            require.config({
+                paths: {
+                    'echarts': 'https://staticxin.paperyy.com/static/js/echarts-map',
+                    'echarts/chart/pie': 'https://staticxin.paperyy.com/static/js/echarts-map'
+                }
+            });
+            require(
+                [
+                    'echarts',
+                    'echarts/chart/pie'
+                ],
+                function (ec) {
+                    var myChart = ec.init(document.getElementById('cnt_1_echart'));
+                    var option = {
+                        legend: {
+                            orient: 'vertical',
+                            x: 210,
+                            y: 10,
+                            data: ['原创', '重复']
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            //formatter: "{a} <br/>{b} : {c} ({d}%)",
+                            formatter: function (a) {
+                                return a[0] + " <br/>" + a[1] + " : " + a[2] + " (" + a[3] + "%)";
+                            }
+                        },
+                        calculable: false, //拖动
+                        grid: {x: 0, y: 0, x2: 0, y2: 10, borderWidth: 0},
+                        series: [
+                            {
+                                name: '字数',
+                                type: 'pie',
+                                radius: '45',
+                                startAngle: 138,
+                                center: ['39%', '45%'],
+                                data:pieData
+                            }
+                        ]
+                    };
+                    myChart.setOption(option);
+                }
+            );
+        }
+        //正则表达式，获取地址中的参数
+        var reg = new RegExp("(^|&)data=([^&]*)(&|$)", "i");
+
+        function getQueryString() {
+            var search = location.search;
+            var param = search.substr(1).match(reg);
+            if (param == null) return;
+            var encode = param[2];
+            var decode = decodeURIComponent(encode);
+            var data = JSON.parse(decode);
+            var urlMap = data.UrlMap;
+            $(".repTabLink_0426 a").each(function () {
+                var key = $(this).attr("href");
+                if(urlMap[key]) {
+                    var url;
+                    if (urlMap[key].indexOf("?") > -1) {
+                        url = urlMap[key] + "&data=" + encode;
+                    } else {
+                        url = urlMap[key] + "?data=" + encode;
+                    }
+                    $(this).attr("href", url);
+                }
+            });
+            $("#navigation").show();
+        }
+        $(document).ready(function () {
+            getQueryString();
+            ShowCharts1();
+        });
+    </script>
+    <style>
+        /**
+        * 非至尊版报告检测报告结果样式
+        *
+        */
+
+        .ReportResult_Con1_new {
+            width: 100%;
+            height: 40px;
+        }
+
+        .ReportResult_Con1_new ul li{
+            display: inline-block;
+            margin-right: 30px;
+            height: 34px;
+        }
+
+        .ReportResult_Con1_new .result-word {
+            position: relative;
+        }
+
+        .ReportResult_Con1_new .result-word .text-up {
+            position: absolute;
+            width: 120px;
+        }
+
+        .ReportResult_Con1_new .result-word .text-down {
+            position: absolute;
+            top: 25px;
+            width: 120px;
+            left: 14px;
+        }
+
+        .ReportResult_Con1_new ul li:nth-child(1){
+            font-weight: 800;
+        }
+
+        .ReportResult_Con1_new ul li:nth-child(3){
+            margin-right: 40px;
+        }
+
+        .color-red {
+            color: #ef001c
+        }
+
+        .TextInfoContent_right .green{
+            color: #6A902E;
+            font-weight: bold;
+        }
+
+        .TextInfoContent_right .gray{
+            color: #C0C0C0;
+        }
+        .wrapper_con{
+            position: relative;
+        }
+        .zjk-tips{
+            width: 210px;
+            background: #fff;
+            position: absolute;
+            right: -240px;
+            top: 207px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .zjk-tips::after{
+            content: '';
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-right-color: #fff;
+            position: absolute;
+            left: -19px;
+            top: 23px;
+        }
+        .cnki_forecast {
+            bottom : 7px
+        }
+        .seal {
+            right: 7px;
+        }
+        .ReportResult_Con1 dl dd.qu4 {
+            background-position: -300px -450px;
+        }
+        .ReportResult_Con1 dl dd.qu2 {
+            width: 224px;
+        }
+        .ReportResult_Con1 dl dd {
+            display: block;
+            float: left;
+            font-size: 14px;
+            background: url(images/li.gif?v20210924) no-repeat;
+            width: 184px;
+            padding-left: 23px;
+            margin-right: 15px;
+            margin-left: 0px;
+            height: 24px;
+            line-height: 24px;
+        }
+        .repTabLink_0426 li {
+            width: 192px;
+            margin-right: 0px;
+        }
+    </style>
+</head>
+<body>
+<!--底部弹框-->
+            <div class="new-guangg">
+                <img src="images/close_gray.png" class="new-close"/>
+                <img src="images/new-head.png" class="new-headbg"/>
+                <p class="new-head">第3代智能语义降重模型</p>
+                <p class="new-secHead">进一步优化修改后的语句通顺度、连贯性、上下文结构。较上一代提升30%</p>
+                <a class="new-a" href="javascript:void(0);" onClick="goJC('advert_reduce')">立即体验</a>
+                <p class="new-lastText">最高可降低75%比例</p>
+            </div>
+            <script>
+                $(function(){
+                    var error_word=Math.floor(Math.random()*(100+1-0)+0);
+                    $("#error_word").html(error_word + "个");
+                    $(".nb-close").click(function(){
+                        $(".new-btbox").hide()
+                    })
+                    $(".new-close").click(function(){
+                        $(".new-guangg").hide()
+                    })
+                })
+                function goJC(e){
+                    var newWindow = window.open();
+                    try{
+                        $.ajax({
+                            url: "https://" + domainUrl + '/api/user-behavior/user-behavior-collect/3/12',
+                            async:true,
+                            data:{pageInfo:e}
+                        })
+                    }
+                    catch(err){
+
+                    }
+                    newWindow.location.href= "https://" + domainUrl + '/check-pay/reduce-pay-task/YY202112111112016392'
+                }
+            </script>
+<!--topbg-->
+<a name="top"></a>
+<div class="topbg">
+    <div class="top">
+        <div class="logo pngfix">
+                <img src="images/logo_4.png">（全文标明引文报告）
+        </div>
+    </div>
+</div>
+<!--topbg end-->
+<!--wrapper-->
+<div class="wrapper">
+    <!--wrapper_topbg-->
+    <div class="wrapper_topbg">
+        <!--xp 20150305 begin-->
+        <div class="type1" style="font-size: 13px;height: 14px;line-height: 41px;"></div>
+        <!--xp 20150305 end-->
+        <!--wrapper_con-->
+        <div class="wrapper_con">
+            <div class="zjk-tips"  style="display: none;"></div>
+            <div class="wrapper_conT"></div>
+            <div class="wrapper_con_content">
+                <!--TextInfo-->
+                <div class="TextInfo Mar">
+                    <div class="navbar">
+                        <ul class="fastBar">
+                        </ul>
+                    </div>
+                    <!--TextInfoCon-->
+                    <div class="TextInfoCon">
+                        <div class="TextTitle" style="width:129px;">文献基本信息</div>
+                        <!--TextInfoContent-->
+                        <div class="TextInfoContent">
+                            <div class="TextInfoContent_left">
+                                <ul>
+                                    <li><span class="lbt">检测文献：</span>2020010108_徐浩博_深伪检测综述</li>
+                                    <li><span class="lbt">文献作者：</span></li>
+                                    <li><span class="lbt">报告时间：</span>2021-12-11 11:12:27</li>
+                                    <li><span class="lbt">段落个数：</span>2</li>
+                                    <li><span class="lbt">报告编号：</span>YY202112111112016392</li>
+                                </ul>
+                            </div>
+                            <div class="division_line"></div>
+                            <div class="TextInfoContent_right">
+                                <ul>
+                                    <li class="title">检测范围：</li>
+                                        <li>中国期刊库</li>
+                                        <li>中国图书库</li>
+                                        <li>硕士论文库</li>
+                                        <li>博士论文库</li>
+                                        <li>会议论文库</li>
+                                        <li>报纸库</li>
+                                        <li>中国专利库</li>
+                                        <li>中国标准库</li>
+                                        <li>百科库</li>
+                                        <li>网页库</li>
+                                        <li>中国共享库</li>
+                                        <li>工作总结</li>
+                                        <li>思想汇报</li>
+                                        <li>项目申报书</li>
+                                            <li class="green">个人自建库</li>
+                                            <li class="gray">共享自建库</li>
+                                            <li class="gray">机构自建库</li>
+                                </ul>
+                            </div>
+                            <div class="seal">
+                                <div id="SealArea">
+                                    <div id="SealBg">
+                                        <img width="125" height="125" src="data:image/png;base64,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"/>
+                                    </div>
+                                    <div id="SealPercent"></div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!--TextInfoContent end-->
+                    </div>
+                    <!--TextInfoCon end-->
+                </div>
+                <!--TextInfo end-->
+                <div class="Recommend">
+                    <div class="TextTitle" style="width:112px;">推荐服务</div>
+                    <div class="ReportResult_T"></div>
+                    <div class="ReportResult_Con recommend_list">
+                            <a class="recommend_row recom-row" href="https://www.paperyy.com/check-pay/reduce-pay-task/YY202112111112016392" target="_blank">
+                                <div class="recommend_left">
+                                    <img class="img1" src="images/recommend_icon1.png"/>
+                                </div>
+                                <p class="recommend_right">自动降重</p>
+                            </a>
+                            <a class="recommend_row recom-row" href="https://www.paperyy.com/online_check/prepare_check/1-292aceac-cc1a-4121-a610-8f5b3189db13" target="_blank">
+                                <div class="recommend_left">
+                                    <img class="img2" src="images/recommend_icon2.png"/>
+                                </div>
+                                <p class="recommend_right">在线修改</p>
+                            </a>
+                        <a class="recommend_row" href="https://www.paperyy.com/paper_service.aspx" target="_blank">
+                            <div class="recommend_left">
+                                <img class="img6" src="images/recommend_icon6.png"/>
+                            </div>
+                            <p class="recommend_right">人工降重</p>
+                        </a>
+                            <a class="recommend_row recom-row" href="https://www.paperyy.com/paper-correction/check?taskId=1-292aceac-cc1a-4121-a610-8f5b3189db13" target="_blank">
+                                <div class="recommend_left">
+                                    <img class="img4" src="images/recommend_icon4.png"/>
+                                </div>
+                                <p class="recommend_right">论文纠错</p>
+                            </a>
+                         <a class="recommend_row" href="https://www.ixueshu.com/" target="_blank">
+                            <div class="recommend_left">
+                                <img class="img5" src="images/recommend_icon5.png"/>
+                            </div>
+                            <p class="recommend_right">找论文</p>
+                        </a>
+                        <a class="recommend_row" href="https://www.paperyy.com/member_new/thesis/post.aspx" target="_blank">
+                            <div class="recommend_left">
+                                <img class="img3" src="images/recommend_icon3.png"/>
+                            </div>
+                            <p class="recommend_right">免费查重</p>
+                        </a>
+                    </div>
+                    <div class="ReportResult_Bot"></div>
+                </div>
+                <div>
+                    <!--<div class="banner_0508"><a href="https://www.paperyy.com/reduce_repetition.aspx?reportnum=YY202112111112016392" target="_blank"></a></div>-->
+
+                </div>
+                <!--ReportResult-->
+                <!-- 至尊版还是以前展示的内容，其它版本做调整 -->
+                    <div class="ReportResult Mar">
+                        <div class="TextTitle" style="width:129px;">检测报告结果</div>
+                        <div class="ReportResult_T"></div>
+                        <div class="ReportResult_Con">
+                            <!--ReportResult_Con1-->
+                            <div class="ReportResult_Con1">
+                                <dl>
+                                    <dt>
+                                        <div class="navbar2">
+                                            <ul class="fastBar2"></ul>
+                                        </div>
+                                        <span class="report">总文字复制比：1.4%</span>
+                                        <span class="remark"></span></dt>
+                                    <dd class="qu1" style="margin-left: 30px">
+                                        <span class="report_green">去除引用文献复制比：</span>1.4%
+                                    </dd>
+                                    <dd class="qu2">
+                                        <span class="report_green">去除本人已发表文献复制比：</span>1.4%
+                                    </dd>
+                                    <dd class="qu3">
+                                        <span class="report_green">单篇最大文字复制比：</span>0.8%
+                                    </dd>
+                                    <dd class="qu4" style="margin-right: 0px;">
+                                        <span class="report_green">自建库复制比：</span>0%
+                                    </dd>
+                                </dl>
+                                <!--detail-->
+                                <div class="detail">
+                                    <div class="detail_L">
+                                        <ul>
+                                            <li>
+                                                <span class="text_blue">重复字数：</span>113
+                                            </li>
+                                            <li><span class="text_blue">总字数：</span>8,199（不含参考文献）</li>
+                                            <li><span class="text_blue">单篇最大重复字数：</span>69</li>
+                                            <li><span class="text_blue">总段落数：</span>2</li>
+                                            <li>
+                                                <span class="text_blue">前部重合字数：</span>0
+                                            </li>
+                                            <li>
+                                                <span class="text_blue">疑似段落最大重合字数：</span>69
+                                            </li>
+                                            <li>
+                                                <span class="text_blue">疑似段落数：</span>2
+                                            </li>
+                                            <li>
+                                                <span class="text_blue">后部重合字数：</span>113
+                                            </li>
+                                            <li>
+                                                <span class="text_blue">疑似段落最小重合字数：</span>44
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="detail_R">
+                                        <div id="cnt_1_echart" style="width:260px;height:132px;"></div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <!--detail end-->
+                            </div>
+                            <!--ReportResult_Con1 end-->
+                        </div>
+                        <div class="ReportResult_Bot"></div>
+                    </div>
+                <!--ReportResult end-->
+                <!--DetailReport-->
+                <div class="DetailReport Mar">
+                    <!--tab begin-->
+                    <div class="notice">
+                        <div class="repTabLink_0426">
+                                <ul>
+                                            <li class="curr">全文标明引文报告</li>
+                                            <li><a href="去除本人已发表文献报告.html" target="_blank">去除本人已发表文献报告</a></li>
+                                            <li><a href="简洁报告.html" target="_blank">简洁报告</a></li>
+                                            <li><a href="全文对照报告.html" target="_blank">全文对照报告</a></li>
+                                </ul>
+                        </div>
+                        <div class="tab-bd">
+                            <div class="repTip_04261800">检测原文内容中<span class="red">红色字体</span>标记的为重复文字</div>
+                            <div class="tab-pal">
+                                <ul>
+                                    <!--xp 20150306 begin-->
+                                    <!--summary-->
+                                    <div class="summary">
+                                            <!--summary-->
+                                            <dl>
+                                                <dt>
+                                                    <span class="sumInfo">1.2020010108_徐浩博_深伪检测综述_第1部分</span>
+                                                    <span class="sumTotal">总字数：7,355</span>
+                                                </dt>
+                                                <dd>文字复制比：0.6
+                                                    %（44）
+                                                </dd>
+                                            </dl>
+                                                <div class="simply_table">
+                                                    <table bordercolor="#fff" cellspacing="0" cellpadding="0"
+                                                           class="simp_table">
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">1</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://xueshu.baidu.com/s?wd=人脸伪造视频检测技术研究 - 知网查重版本"
+                                                                               target="_blank">人脸伪造视频检测技术研究 - 知网查重版本</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《个人自建库
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">2.2%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        <!--内容1 end-->
+                                                    </table>
+                                                </div>
+                                            <!--detail_table end-->
+                                            <div class="yuanwen_title">原文内容</div>
+                                            <div class="yuanwen">
+                                                <p>深伪视频检测综述</p><p>清华大学软件学院2020010108徐浩博</p><p>摘要:深伪(deepfake)一般指基于深度学习(deep learning)的模型修改原图片或视频的人脸,获得伪造(fake)的图片或视频的一种技术。伴随深度学习的方法技术不断发展,伪造出的图片和视频越来越逼真;虽然在一些电影特效或者社交媒体上娱乐等方面,深伪起到一定积极的作用;然而由于伪造照片和视频极易与金融诈骗、名誉侵权、新闻伪造相关,一些照片和视频甚至会伪造国家领导人的相关肖像,从而对国家安全等产生威胁,因此深伪检测技术的发展就有很强的现实意义。本文将从深伪视频数据集出发,较为系统地介绍并比较深伪检测常用的数据集;然后我们对深伪检测的算法进行分类并逐一介绍。最后,文章将会对深伪检测领域的未来发展作简单的展望。</p><p>关键词:深伪检测;数据集;深度学习</p><p>Deepfake Video Detection: A Survey</p><p>XU Haobo 2020010108</p><p>(School of Software, Tsinghua University,</p><p>Beijing 100084, China)</p><p>Abstract: Deepfake generally refers to the technology of modifying the face of the original picture or video based on the deep learning model to obtain fake pictures or videos. With the continuous development of deep learning methods and technologies, forged pictures and videos are becoming more and more realistic; although in some movie special effects or social media entertainment, deep forgery plays an active role; however, it is very easy to forge photos and videos. Involving financial fraud, reputation damage, news fraud, etc., some photos and videos may even forge relevant portraits of national leaders, thereby posing a threat to national security. Therefore, the development of deep forgery detection technology has strong practical significance. This article will start with the deep pseudo-video data set, systematically introduce and compare the commonly used data sets for deep pseudo-detection; next we will classify and introduce the deep pseudo-detection algorithms one by one. Finally, the article will give a brief outlook on the future development of the deep fraud detection field.</p><p>Keyword: Deepfake Detection; Dataset; Deep Learning<br />1引言</p><p>深伪算法通常采用自动编码器(Autoencoding)或生成对抗网络(GAN)来达到伪造的目的。具体来说,深伪可以分为以下几种模式:1)面孔互换;2)整脸伪造;3)脸部属性修饰[1]。因此无论是深伪数据集的生成还是深伪检测算法,都围绕这几种伪造方法来展开。</p><p>深伪检测技术的发展离不开两大基石:一是数据集的构建,二是检测算法的更新。</p><p>首先是数据集,数据集无论是作为检测效果的测试,还是作为基于一些深度学习的模型的训练集,都有着关键的意义。第一代数据集包括UADFV、FaceForensics++等;然而第一代数据集存在的问题是数据规模小、可变性不强(如光照条件、拍摄场景单一等)、图片/视频质量过低等。基于此,如DeepFakeDetection、DFDC Preview等第二代数据集应运而生;它们一定程度上弥补了原有数据集的漏洞,并且还大量扩充了深伪视频的内容[2]。我们将在第2节详细讲述这些内容。</p><p>其次是检测算法,大致可归结为基于深度学习模型的检测、基于时序特征的检测、基于视觉细节的检测、基于生物特征的检测等四类。这些内容我们将在第3节展开。</p><p>2深伪视频数据集</p><p>2.1 UADFV</p><p>UADFV是2018年为了检测人像眨眼率提出的视频数据集[3]。作为较早的视频数据集,它在Youtube上采集了49个视频,并利用dlib库提取人脸地标,再用相似变换矩阵将假人像仿射回图像,最后进行细节处理。但由于分辨率过低,数据量小,主要采用面孔互换方法伪造,丰富性不足等,仍然有诸多缺陷。</p><p>2.2 FF/FF++/DFD</p><p>FaceForensics是第一代数据集,于2018年发布,它同时也是最早大规模运用深伪生成算法构建出的数据集之一[4]。它主要从Youtube等视频网站上采集千余个主持人新闻播报视频,并采用Face2Face的面孔互换方法。视频质量有了进一步提升,但伪造方法单一且落后,判断真伪性难度较低。大多数深伪检测算法AUC都可以接近100%。</p><p>FaceForensics++是对于FaceFornsics数据集的延拓[5]。FF++于2019年发布,它充分利用了常见的Deepfakes、FaceSwap、NeuralTextures 和 Face2Face四种视频伪造方法,对约一千段原始视频进行了伪造,生成约四千段伪造视频;这几种方法包含了自动编码器、图形学算法和神经纹理渲染的深度学习模型,方法较为丰富。此外,数据集还提供了Raw,Crf 23和Crf40三种分辨率,是目前应用较广的数据集之一。</p><p>在Google公司的支持下,DeepFakeDetection (DFD)数据集在2019年也被纳入FF++数据集范畴[6]。该数据集生成算法更优具有更高的真实感,且充分模拟了社交网络上视频处理技术,提供了若干常见视频格式和视频质量。</p><p>2.3 DFFD</p><p><em class='similar'>DFFD为美国密歇根州立大学于2019年发布的数据集</em>[7];<em class='similar'>该数据集</em>的优势在于深伪生成方法广泛。他们充分利用了面孔互换、整脸伪造、脸部属性修饰、脸部表情动作修饰这四种生成方法,每种方法均运用当时最前沿的开源技术生成。除此之外,他们采样数据的男女比例均衡、年龄分布较为广泛。他们还充分考虑到了图片质量大小、图片旋转角度的多样性,因此DFFD是较为丰富且全面的数据库。</p><p>2.4 Deepfake-TIMIT</p><p>Deepfake-TIMIT数据集由Korshunov和Marcel于2018年发布[8]。该数据集包括来自VidTIMIT数据库的六百余个假视频,通过基于GAN的换脸算法生成。数据集还充分考虑了不同场景和不同视频质量,针对不同视频质量,他们还特别修改了混合算法,使得视频伪造性更强。</p><p>2.5 DFDC Preview/DFDC</p><p>The Deepfake Detection Challenge(DFDC)是Facebook公司面向全球举行的深伪检测竞赛。2019年,比赛前夕,Facebook公布了预演数据集DFDC Preview,由一千余真实视频和四千余伪造视频组成[9]。2020年,DFDC竞赛上,Facebook公布了DFDC数据集[10].它基于多种深度伪造算法,如基于GAN的star-GAN算法等和非深度学习伪造算法生成,还通过多重图像处理技术增强伪造效果。总数据数量超过十万。</p><p>2.6其他常见数据集</p><p>除以上数据集外,常见数据集还有纽约州立大学奥法罗分校发布的Celeb-DF[11],商汤公司制作的ForgeryNet[12]等。其中ForgeryNet是目前公开的最大深伪数据集,采用的伪造方法、扰动方法数目也是较为丰富的。</p><p>表1:常见深伪数据集对比表</p><p>数据集发布时间图片伪造视频真实视频</p><p>UADFV REF _Ref90069806\r \h [3]2018√4949</p><p>Deepfake-TIMIT [8]2018×620-</p><p>Celeb-DF [11]2018×5639890</p><p>FaceForensics [4]2019×10001000</p><p>FaceForensics++[5]2019×40001000</p><p>DeepFakeDetection [6]2019×3608363</p><p>DFFD REF _Ref90070261\r \h [7]2019√30001000</p><p>DFDC Preview [9]2019×41191131</p><p>DFDC [10]2020×10450023564</p><p>ForgeryNet [12]2021√12161799630</p><p>3深伪视频检测方法</p><p>3.1基于深度学习模型的检测</p><p>此种检测方法实际上是深度学习模型中分类(classification)问题的延拓。对于图像,深度学习方法已经较为成熟;对于视频,可以将其视为一个图像集合。取视频中的若干帧序列,对于每帧图像均做处理,最终对于整个视频,也即图像集合,可以采用平均或投票的方法,判断最终的真伪性[13]。</p><p>Chollet et al.基于Inception V3卷积神经网络进行进一步优化改进,提出XceptionNet[14]。Rossler et al.利用Xception对FF++数据集进行了评估,结果优于其他大多数网络[15]。Tan et al.则在卷积时通过设定CNN深度、宽度和图像分辨率三个维度的系数,从而提高了CNN的精度与速度,这种网络也被称为EfficientNet[16]。以上两种方法则是深伪检测中识别帧序列最为常用的两种backbone,除此之外还有若干种先进的卷积神经网络,如ResnNet等,它们共同为深伪检测奠定了基石。Dang et al.在CNN基础上引入了注意力机制,取得了较好效果[17]。 Wang et al.建立的是浅层神经网络[28],但他们监视了神经元的活动,最终也取得了不错的效果。</p><p>McCloskey和Albright 发现基于GAN生成的伪造视频和图像在颜色细节上会存在瑕疵,他们基于此利用SVM作为分类器进行深伪检测[18]。然而这种方法的局限性在于可以检测的图片生成种类单一,且伴随GAN伪造图片技术的改进,这一检测手段显然会面临淘汰的窘境。</p><p>Zhou et al.利用一种双流(Two-stream)方式来进行深伪检测[19],如图1。其中一个流是人脸分类流;它基于CNN的GoogLeNet,通过真实人脸和被标记的伪造人脸的学习被训练成为一个二分类器。另一个流是基于SVM对于图片隐写分析特征(steganalysis features)的训练,具体来说,首先选择一个三元组(锚定区域、真图片中的区域和假图片的区域),通过对三元组的学习使得SVM成为可以发掘图片特定区域背景噪声等细节的分类器,之后通过分类器对于人脸区域的判断,作出图片真伪的判别。两个流的分数加权作为最终的检测分数,并给出判断。</p><p>图1:Zhou et al.提出的双流深伪检测方式:一个流进行人脸分类,一个流进行隐写分析特征[19]</p><p>3.2基于时序特征的检测</p><p>该种检测方法首先由Güera et al.提出[20],文章首先提出由于视频伪造时基本会对每帧进行伪造,因此帧与帧之间就会存在诸如抖动等差异,检测时序上帧的差异,也就可以分辨出视频真伪。Güera et al.首先利用Inception V3的CNN对于视频的各个帧进行分析,然后利用LSTM的RNN对于序列进行整合分析。最后他们用自动编码器生成自己的数据集并进行了测试,具有不错的效果。但如果伪造的视频针对检测的特征进行优化改进,则该检测方法准确率就会降低。</p><p>Masi et al.对上述方法进行了改进,提出双分支方法[21]。其中一个分支对颜色域中的数据进行处理,另一个分支学习频域信息,利用高斯拉普拉斯算子(LoG)抑制面孔的信息,从而放大伪影。两个分支汇总在DenseNet的CNN中,再通过双向LSTM的RNN。最后,他们还对损失函数(Loss Function)进行了改进。他们的方法架构如图2所示。</p><p>图2:Masi et al.提出的双分支方法:一个分支处理颜色域,一个分支处理空间频域[21]</p><p>3.3基于视觉细节的检测</p><p>由于人脸合成必须要将新面孔的图像混合在原图像上,所以混合后的边界可能出现边界模糊、亮度不一致等等问题,通过这些问题的检测可以达到深伪检测的目的。除此之外,由于目标图像和原图像可能采用不同的拍摄相机,一些相机指纹(camera fingerprint)也可能让深伪检测成为可能。</p><p>Li和Lyu[3]认为人像是将目标面孔通过仿射变换映射到原图片上,会引起图片扭曲,使得图片的分辨率和颜色出现差异。然后他们通过CNN捕捉这种伪影差异,即可分辨图片真伪。最终通过随机选取帧进行检测来投票判断视频真伪。这样做的好处是不需要生成负样本测试,因为图片经过简单的变换即可作为负样本进行训练,所以可以避免大规模生成深伪视频的时间和硬件资源浪费。最终对比多个种类的CNN,他们选取ResNet50作为最终的选择,并取得了不错的效果。但该方法未在大量压缩视频上进行测试,因此处理多样性强的样本效果可能欠佳。</p><p>Li et al.定义脸部X光(face X-ray)为伪造人脸和背景图片的边界[22]。他们也观察到大多数图片或视频伪造时均会将目标人像混合进背景图像中,并由此产生图像差异;通过检测这种差异并试图通过发现face X-ray分离混合的人像和背景图片,从而达到鉴别真伪的目的,如图3所示。但此种方法只关注边界,对于全伪造或是特别处理的图片就束手无策了,因此泛化能力有待提高。</p><p>图3:Li et al.提出的脸部X光检测,预测的混合图片边界与实际情况较为接近[23]</p><p>另一方面,Cozzolino et al.从视频的拍摄工具相机入手[23],他们提出在拍摄时,所有的相机处理输入的光场时都会进行压缩、插值、伽马校正等一系列操作,从而留下伪影噪音。而每个相机的处理都存在差异,他们称之为相机指纹;因此可以利用图片上的噪音差异分析,也即噪声打印(noiseprint)。分析噪声时,他们采用来自相同相机或不同相机的成对图片训练一个孪生CNN(Siamese-CNN)网络,并取得了良好效果。然而最新研究显示,模拟相机指纹可以欺骗此种检测方法,因此方法的鲁棒性还需进一步完善。</p><p>3.4基于生物特征的检测</p><p>Ciftci et al.通过检测心率差异来判别视频真伪[24]。他们结合已有的生物医学文献[25],提出用一种rPPG的技术,从视频中动作和RGB颜色的细微变化检测出心率。他们在实验中发现,伪造视频中的心率并不能在空间和时间上很好地保持一致。于是他们利用简单的分类器就就完成了视频检测,并且取得了出色效果。</p><p>Mittal et al.同时利用一段视频的音频和视频两个方面特征,对于音频中的语音和视频中的面部动作表露出的感情同时进行识别[26]。他们采用了一个孪生CNN网络来完成架构。训练时,他们将真实视频和原视频同时通过网络,并且获得两个向量,计算出损失函数值;我们通过最小化真实视频的损失函数值(最大化真实视频的音频与视频表露感情的相似性)和最大化伪造视频的损失函数值(最小化相似性)来达到训练目的。</p><p>Korshunov et al.利用说话时人脸嘴部的特征变化与视频中语音之间的差异检测伪造说话的视频[27]。他们首先标定嘴部的若干地标,地标之间的距离变化可以认为是嘴部的运动;他们使用。然后他们将语音通过DNN识别特征(也可以直接用数学方法提取MFCC声学特征),最后利用不同帧之间的这些特征训练LSTM,从而实现时序分析。最后通过判断嘴部动作和语音是否匹配,鉴定视频真伪。然而这种方法存在的最大局限性在于任何嘴部的活动都会被识别为讲话的动作,而且也诚如作者自己所说,标定嘴部地标时,他们只考虑了正脸的情况,因此对于侧脸,准确率会大大下降。同时,该种方法也只能识别语音内容与嘴型相差较大的视频,若视频制作针对此方面作出更新,则鲁棒性也会较差。</p><p>表2:常见深伪检测方法</p><p>作者发表状况方法数据集效果*</p><p>Zhou et al. REF _Ref90071501\r \h [19]2018, CVPRW 面部分类CNN+隐写分析特征SVM SwapMe and FaceSwap 0.927AUC</p><p>UADFV 0.851AUC</p><p>Celeb-DF 0.557AUC</p><p>McCloskey et al.[18]2018, arXiv 基于颜色细节的SVM GAN Full 0.61AUC</p><p>Li &amp; Lyu REF _Ref90069806\r \h [3]2018, arXiv 面孔扭曲检测 CNN Faceforensics++(c40)0.911AUC</p><p>UADFV 0.974AUC</p><p>Deepfake‐TIMIT(LQ)0.999AUC</p><p>Deepfake‐TIMIT(HQ)0.932AUC</p><p>Güera et al.[20]2018, AVSS CNN+LSTM 自建0.971ACC</p><p>Cozzolino et al. REF _Ref90074103\r \h [23]2019, TIFS 相机指纹Siamese-CNN FaceForensics++0.9214ACC</p><p>Rossler et al.[15]2019, ICCV Xception FaceForensics++(raw)0.9926ACC</p><p>FaceForensics++(c23)0.9573ACC</p><p>FaceForensics++(c40)0.8100ACC</p><p>Wang et al. REF _Ref90076756\r \h [28]2019, IJCAI 监测神经元活动的浅层神经网络 Celeb-DF 0.668AUC</p><p>Masi et al.[21]2020, ECCV 双分支DenseNet+LSTM Faceforensics++(c23)0.991AUC</p>
+                                            </div>
+                                            <!--summary-->
+                                            <dl>
+                                                <dt>
+                                                    <span class="sumInfo">2.2020010108_徐浩博_深伪检测综述_第2部分</span>
+                                                    <span class="sumTotal">总字数：844</span>
+                                                </dt>
+                                                <dd>文字复制比：8.2
+                                                    %（69）
+                                                </dd>
+                                            </dl>
+                                                <div class="simply_table">
+                                                    <table bordercolor="#fff" cellspacing="0" cellpadding="0"
+                                                           class="simp_table">
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">1</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://xueshu.baidu.com/s?wd=一种基于空域和频域多特征融合的人脸活体检测算法"
+                                                                               target="_blank">一种基于空域和频域多特征融合的人脸活体检测算法</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                            陈然;伍世虔;徐望明 -
+                                                                            《电视技术
+                                                                            》- 2019
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">11%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">2</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://xueshu.baidu.com/s?wd=基于时序转移和深度引导注意力的双流人脸活体检测网络"
+                                                                               target="_blank">基于时序转移和深度引导注意力的双流人脸活体检测网络</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                            岳梦园 -
+                                                                            《河北大学硕士论文
+                                                                            》- 2021
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">10.2%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">3</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://xueshu.baidu.com/s?wd=不同飞行阶段飞行员使用HUD的行为模式及认知绩效研究"
+                                                                               target="_blank">不同飞行阶段飞行员使用HUD的行为模式及认知绩效研究</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                            常赫 -
+                                                                            《中国民航大学硕士论文
+                                                                            》- 2018
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">8.5%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        <!--内容1 end-->
+                                                    </table>
+                                                </div>
+                                            <!--detail_table end-->
+                                            <div class="yuanwen_title">原文内容</div>
+                                            <div class="yuanwen">
+                                                <p>Li et al.[22]2020, CVPR 混合图像边界检测 HRNet FaceForensics++(DeepFake)0.9912AUC</p><p>FaceForensics++(FaceSwap)0.9909AUC</p><p>FaceForensics++(Face2Face)0.9931AUC</p><p>FaceForensics++(NeuralTexture)0.9927AUC</p><p>Ciftci et al.[24]2020, TPAMI 心率特征 CNN FaceForensics++(DeepFake)0.9375ACC</p><p>FaceForensics++(FaceSwap)0.9625ACC</p><p>FaceForensics++(Face2Face)0.9525ACC</p><p>FaceForensics++(NeuralTexture)0.8125ACC</p><p>Dang et al. REF _Ref90072904\r \h [17]2020, CVPR 注意力机制+CNN DFFD 0.712AUC</p><p>Mittal et al. REF _Ref90074123\r \h [26]2020, ACM MM 音/视频感情相似性Siamese-CNN DFDC 0.844AUC</p><p>DF-TIMIT 0.966AUC</p><p>Korshunov et al.[27]2019, ICML 嘴部特征与语音DNN+LSTM 自建0.167EER</p><p>*注:<em class='similar'>AUC= Area Under Curve,</em><em class='similar'>ROC曲线下面积;</em><em class='similar'>ACC=Accuracy,</em><em class='similar'>准确率;</em><em class='similar'>EER=Equal Error Rate,</em><em class='similar'>等错误率.</em></p><p>4总结与展望</p><p>近年来,随着深度学习方法和技术的完善,越来越多的深伪视频生成,对个人和国家的隐私和安全都造成了一定程度的威胁。然而我们也看到,越来越丰富的深伪检测技术正在极力逆转这一局面。然而深伪检测仍面临诸多问题,除了泛化能力、鲁棒性和正确率有待提高外,不可解释的机器学习方法更类似于黑盒模型,在法庭作证等方面效力欠缺,不能令人信服[29]。但我们也看到,伴随着技术手段的不断发展,深伪技术也将越来越趋近于成熟,更好地服务于我们的生活。</p><p class='uncheck'>参考文献 （Reference）</p><p class='uncheck'>[1]Du M, Pentyala S, Li Y, et al. Towards generalizable deepfake detection with locality-aware autoencoder[C]//Proceedings of the 29th ACM International Conference on Information & Knowledge Management(CIKM). 2020: 325-334.</p><p class='uncheck'>[2]Tolosana R, Vera-Rodriguez R, Fierrez J, et al. Deepfakes and beyond: A survey of face manipulation and fake detection[J]. Information Fusion, 2020, 64: 131-148.</p><p class='uncheck'>[3]Li Y, Lyu S. Exposing deepfake videos by detecting face warping artifacts[J]. arXiv preprint arXiv:1811.00656, 2018.</p><p class='uncheck'>[4]Rössler A, Cozzolino D, Verdoliva L, et al. Faceforensics: A large-scale video dataset for forgery detection in human faces[J]. arXiv preprint arXiv:1803.09179, 2018.</p><p class='uncheck'>[5]Rossler A, Cozzolino D, Verdoliva L, et al. Faceforensics++: Learning to detect manipulated facial images[C]//Proceedings of the IEEE/CVF International Conference on Computer Vision(ICCV). 2019: 1-11.</p><p class='uncheck'>[6]Dufour N, Gully A, Karlsson P, et al. Deepfakes Detection Dataset[J]. 2019.</p><p class='uncheck'>[7]Dang H, Liu F, Stehouwer J, et al. On the detection of digital face manipulation[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern recognition(CVPR). 2020: 5781-5790.</p><p class='uncheck'>[8]Korshunov P, Marcel S. Deepfakes: a new threat to face recognition? assessment and detection[J]. arXiv preprint arXiv:1812.08685, 2018.</p><p class='uncheck'>[9]Dolhansky B, Howes R, Pflaum B, et al. The deepfake detection challenge (dfdc) preview dataset[J]. arXiv preprint arXiv:1910.08854, 2019.</p><p class='uncheck'>[10]Dolhansky B, Bitton J, Pflaum B, et al. The deepfake detection challenge (dfdc) dataset[J]. arXiv preprint arXiv:2006.07397, 2020.</p><p class='uncheck'>[11]Li Y, Yang X, Sun P, et al. Celeb-df: A large-scale challenging dataset for deepfake forensics[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition(CVPR). 2020: 3207-3216.</p><p class='uncheck'>[12]He Y, Gan B, Chen S, et al. ForgeryNet: A Versatile Benchmark for Comprehensive Forgery Analysis[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition(CVPR). 2021: 4360-4369.</p><p class='uncheck'>[13]Yu P, Xia Z, Fei J, et al. A Survey on Deepfake Video Detection[J]. IET Biometrics, 2021.</p><p class='uncheck'>[14]Chollet F. Xception: Deep learning with depthwise separable convolutions[C]//Proceedings of the IEEE conference on computer vision and pattern recognition(CVPR). 2017: 1251-1258.</p><p class='uncheck'>[15]Rossler A, Cozzolino D, Verdoliva L, et al. Faceforensics++: Learning to detect manipulated facial images[C]//Proceedings of the IEEE/CVF International Conference on Computer Vision(ICCV). 2019: 1-11.</p><p class='uncheck'>[16]Tan M, Le Q. Efficientnet: Rethinking model scaling for convolutional neural networks[C]//International Conference on Machine Learning(ICML). PMLR, 2019: 6105-6114.</p><p class='uncheck'>[17]Dang H, Liu F, Stehouwer J, et al. On the detection of digital face manipulation[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern recognition(CVPR). 2020: 5781-5790.</p><p class='uncheck'>[18]McCloskey S, Albright M. Detecting gan-generated imagery using color cues[J]. arXiv preprint arXiv:1812.08247, 2018.</p><p class='uncheck'>[19]Zhou P, Han X, Morariu V I, et al. Two-stream neural networks for tampered face detection[C]//2017 IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW). IEEE, 2017: 1831-1839.</p><p class='uncheck'>[20]Güera D, Delp E J. Deepfake video detection using recurrent neural networks[C]//2018 15th IEEE international conference on advanced video and signal based surveillance (AVSS). IEEE, 2018: 1-6.</p><p class='uncheck'>[21]Masi I, Killekar A, Mascarenhas R M, et al. Two-branch recurrent network for isolating deepfakes in videos[C]//European Conference on Computer Vision(ECCV). Springer, Cham, 2020: 667-684.</p><p class='uncheck'>[22]Li L, Bao J, Zhang T, et al. Face x-ray for more general face forgery detection[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition(CVPR). 2020: 5001-5010.</p><p class='uncheck'>[23]Cozzolino D, Verdoliva L. Noiseprint: A CNN-based camera model fingerprint[J]. IEEE Transactions on Information Forensics and Security(TIFS), 2019, 15: 144-159.</p><p class='uncheck'>[24]Ciftci U A, Demir I, Yin L. Fakecatcher: Detection of synthetic portrait videos using biological signals[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence(TPAMI), 2020.</p><p class='uncheck'>[25]De Haan G, Jeanne V. Robust pulse rate from chrominance-based rPPG[J]. IEEE Transactions on Biomedical Engineering, 2013, 60(10): 2878-2886.</p><p class='uncheck'>[26]Mittal T, Bhattacharya U, Chandra R, et al. Emotions Don't Lie: An Audio-Visual Deepfake Detection Method using Affective Cues[C]//Proceedings of the 28th ACM international conference on multimedia(ACM MM). 2020: 2823-2832.</p><p class='uncheck'>[27]Korshunov P, Halstead M, Castan D, et al. Tampered speaker inconsistency detection with phonetically aware audio-visual features[C]//International Conference on Machine Learning(ICML). 2019 (CONF).</p><p class='uncheck'>[28]Wang R, Juefei-Xu F, Ma L, et al. FakeSpotter: A simple yet robust baseline for spotting AI-synthesized fake faces[C]//29th International Joint Conference on Artificial Intelligence, IJCAI 2020. International Joint Conferences on Artificial Intelligence, 2020: 3444-3451.</p><p class='uncheck'>[29]Nguyen T T, Nguyen C M, Nguyen D T, et al. Deep learning for deepfakes creation and detection: A survey[J]. arXiv preprint arXiv:1909.11573, 2019.</p>
+                                            </div>
+                                        <!--summary end-->
+                                        <!--xp 20150305 end-->
+                                    </div>
+                                    <!--summary end-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--tab end-->
+                </div>
+                <!--DetailReport end-->
+            </div>
+            <div class="wrapper_con_Bottom"></div>
+        </div>
+        <!--wrapper_con end-->
+    </div>
+    <!--wrapper_topbg end-->
+    <div class="copyright">版权所有 <a href="https://www.paperyy.com" target="_blank">www.paperyy.com</a></div>
+    <script type="text/javascript">
+        $(".recom-row").each(function () {
+            var href = $(this).attr("href");
+            $(this).attr("href", "https://" + domainUrl + href.substring(href.indexOf("/", href.indexOf("//") + 2)));
+        })
+        $(".recommend-img").each(function () {
+            var href = $(this).attr("href");
+            $(this).attr("href", "https://" + domainUrl + href.substring(href.indexOf("/", href.indexOf("//") + 2)));
+        })
+
+        var zjkTips = getZjkTipsStr();
+        $(function (){
+            resizeWidth();
+        });
+
+        function resizeWidth() {
+            if($(window).width() > 1515){
+                showZjkTips();
+            }
+        }
+        var zjkTimer;
+        function showZjkTips(){
+            if(zjkTips) {
+                $(".zjk-tips").text(zjkTips);
+                $('.zjk-tips').show();
+                zjkTimer = setTimeout(function () {
+
+                    $('.zjk-tips').hide();
+                }, 5000);
+            }else{
+                $(".zjk-tips").hide();
+            }
+        }
+        function getZjkTipsStr(){
+                var zjkHasTypes =  '1';
+                var list = [];
+                var a= zjkHasTypes.indexOf("1") !== -1?"":"个人自建库";
+                var b= zjkHasTypes.indexOf("2") !== -1?"":"共享自建库";
+                var c =zjkHasTypes.indexOf("3") !== -1?"":"机构自建库";
+                if(a){
+                    list.push(a);
+                }
+                if(b){
+                    list.push(b);
+                }
+                if(c){
+                    list.push(c);
+                }
+                if(list.length === 0){
+                    return null;
+                }
+                return list.join('、') + '待开启，开启后可极大提高查重精准度哦！'
+        }
+
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            if(!$('.recommend-img-boximg').length){
+                return
+            }
+            $.ajax({
+                type: "get",
+                url: "https://gateway.ixueshu.com/ad-server/1449266808139870210.jsonp",
+                dataType: 'jsonp',
+                async: false,
+                jsonp: 'jsonpCallback',
+                success: function(data) {
+                    var html = '';
+                    var reportnum = 'YY202112111112016392';
+                    var per = '40';
+                    for(var i=0;i<data.length;i++){
+                        html +=	'<li>'
+                        if(data[i].url){
+                            html += '<a class="recommend-img" href="'+data[i].url.replace("${reportnum!}",reportnum)+'" target="_blank">'
+                        }else{
+                            html += '<a class="recommend-img">'
+                        }
+                        html +=	'<div class="banner_0509" style="background: url('+data[i].image+')">'
+                        if(data[i].depict){
+
+                            html +=	''+data[i].depict.replace("${per}",per)+''
+                        }
+                        html +=	'</div>'
+                        html +=	'</a>'
+                        html +=	'</li>'
+                    }
+                    $('.recommend-img-boximg').html(html);
+                    if(data.length > 1){
+                        jQuery(".recommend-img-box").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"topLoop",autoPlay:true,interTime:6000,pnLoop:true});
+                    }
+                }
+            });
+
+        });
+    </script>
+</div>
+<!--wrapper end-->
+</body>
+</html>

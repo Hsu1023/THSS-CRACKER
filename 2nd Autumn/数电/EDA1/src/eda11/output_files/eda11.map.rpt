@@ -1,0 +1,633 @@
+Analysis & Synthesis report for eda11
+Mon Nov 22 22:34:10 2021
+Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 10. Parameter Settings for Inferred Entity Instance: mul16:my_mul16|lpm_mult:Mult0
+ 11. Parameter Settings for Inferred Entity Instance: gettempword:my_gettempword|lpm_divide:Div1
+ 12. Parameter Settings for Inferred Entity Instance: gettempword:my_gettempword|lpm_divide:Mod1
+ 13. Parameter Settings for Inferred Entity Instance: gettempword:my_gettempword|lpm_divide:Div0
+ 14. Parameter Settings for Inferred Entity Instance: gettempword:my_gettempword|lpm_divide:Mod0
+ 15. Parameter Settings for Inferred Entity Instance: gettempword:my_gettempword|lpm_divide:Mod2
+ 16. lpm_mult Parameter Settings by Entity Instance
+ 17. Port Connectivity Checks: "operateselector:my_operateselector"
+ 18. Port Connectivity Checks: "mul16:my_mul16"
+ 19. Port Connectivity Checks: "sub32:my_sub32"
+ 20. Port Connectivity Checks: "add32:my_add32"
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Mon Nov 22 22:34:10 2021       ;
+; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Full Version ;
+; Revision Name                      ; eda11                                       ;
+; Top-level Entity Name              ; eda11                                       ;
+; Family                             ; Cyclone III                                 ;
+; Total logic elements               ; 252                                         ;
+;     Total combinational functions  ; 252                                         ;
+;     Dedicated logic registers      ; 0                                           ;
+; Total registers                    ; 0                                           ;
+; Total pins                         ; 25                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP3C16Q240C8       ;                    ;
+; Top-level entity name                                                      ; eda11              ; eda11              ;
+; Family name                                                                ; Cyclone III        ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 6           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-12        ;   0.0%      ;
++----------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                           ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                       ; Library ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------+---------+
+; eda11.v                          ; yes             ; User Verilog HDL File        ; C:/Users/Xsu1023/Desktop/eda11/eda11.v                             ;         ;
+; lpm_mult.tdf                     ; yes             ; Megafunction                 ; c:/altera/13.0/quartus/libraries/megafunctions/lpm_mult.tdf        ;         ;
+; aglobal130.inc                   ; yes             ; Megafunction                 ; c:/altera/13.0/quartus/libraries/megafunctions/aglobal130.inc      ;         ;
+; lpm_add_sub.inc                  ; yes             ; Megafunction                 ; c:/altera/13.0/quartus/libraries/megafunctions/lpm_add_sub.inc     ;         ;
+; multcore.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0/quartus/libraries/megafunctions/multcore.inc        ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0/quartus/libraries/megafunctions/bypassff.inc        ;         ;
+; altshift.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0/quartus/libraries/megafunctions/altshift.inc        ;         ;
+; db/mult_a7t.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/Xsu1023/Desktop/eda11/db/mult_a7t.tdf                     ;         ;
+; lpm_divide.tdf                   ; yes             ; Megafunction                 ; c:/altera/13.0/quartus/libraries/megafunctions/lpm_divide.tdf      ;         ;
+; abs_divider.inc                  ; yes             ; Megafunction                 ; c:/altera/13.0/quartus/libraries/megafunctions/abs_divider.inc     ;         ;
+; sign_div_unsign.inc              ; yes             ; Megafunction                 ; c:/altera/13.0/quartus/libraries/megafunctions/sign_div_unsign.inc ;         ;
+; db/lpm_divide_agm.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/Xsu1023/Desktop/eda11/db/lpm_divide_agm.tdf               ;         ;
+; db/sign_div_unsign_bkh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/Xsu1023/Desktop/eda11/db/sign_div_unsign_bkh.tdf          ;         ;
+; db/alt_u_div_13f.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/Xsu1023/Desktop/eda11/db/alt_u_div_13f.tdf                ;         ;
+; db/add_sub_unc.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/Xsu1023/Desktop/eda11/db/add_sub_unc.tdf                  ;         ;
+; db/add_sub_vnc.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/Xsu1023/Desktop/eda11/db/add_sub_vnc.tdf                  ;         ;
+; db/lpm_divide_d8m.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/Xsu1023/Desktop/eda11/db/lpm_divide_d8m.tdf               ;         ;
+; db/lpm_divide_dgm.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/Xsu1023/Desktop/eda11/db/lpm_divide_dgm.tdf               ;         ;
+; db/sign_div_unsign_ekh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/Xsu1023/Desktop/eda11/db/sign_div_unsign_ekh.tdf          ;         ;
+; db/alt_u_div_73f.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/Xsu1023/Desktop/eda11/db/alt_u_div_73f.tdf                ;         ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------+---------+
+
+
++----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary              ;
++---------------------------------------------+------------+
+; Resource                                    ; Usage      ;
++---------------------------------------------+------------+
+; Estimated Total logic elements              ; 252        ;
+;                                             ;            ;
+; Total combinational functions               ; 252        ;
+; Logic element usage by number of LUT inputs ;            ;
+;     -- 4 input functions                    ; 58         ;
+;     -- 3 input functions                    ; 94         ;
+;     -- <=2 input functions                  ; 100        ;
+;                                             ;            ;
+; Logic elements by mode                      ;            ;
+;     -- normal mode                          ; 169        ;
+;     -- arithmetic mode                      ; 83         ;
+;                                             ;            ;
+; Total registers                             ; 0          ;
+;     -- Dedicated logic registers            ; 0          ;
+;     -- I/O registers                        ; 0          ;
+;                                             ;            ;
+; I/O pins                                    ; 25         ;
+; Embedded Multiplier 9-bit elements          ; 0          ;
+; Maximum fan-out node                        ; b[1]~input ;
+; Maximum fan-out                             ; 21         ;
+; Total fan-out                               ; 712        ;
+; Average fan-out                             ; 2.36       ;
++---------------------------------------------+------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                      ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                               ; Library Name ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------+--------------+
+; |eda11                                    ; 252 (2)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 25   ; 0            ; |eda11                                                                                                                            ;              ;
+;    |add32:my_add32|                       ; 5 (5)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|add32:my_add32                                                                                                             ;              ;
+;    |gettempword:my_gettempword|           ; 175 (12)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword                                                                                                 ;              ;
+;       |lpm_divide:Div0|                   ; 25 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Div0                                                                                 ;              ;
+;          |lpm_divide_dgm:auto_generated|  ; 25 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Div0|lpm_divide_dgm:auto_generated                                                   ;              ;
+;             |sign_div_unsign_ekh:divider| ; 25 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Div0|lpm_divide_dgm:auto_generated|sign_div_unsign_ekh:divider                       ;              ;
+;                |alt_u_div_73f:divider|    ; 25 (25)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Div0|lpm_divide_dgm:auto_generated|sign_div_unsign_ekh:divider|alt_u_div_73f:divider ;              ;
+;       |lpm_divide:Div1|                   ; 56 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Div1                                                                                 ;              ;
+;          |lpm_divide_agm:auto_generated|  ; 56 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Div1|lpm_divide_agm:auto_generated                                                   ;              ;
+;             |sign_div_unsign_bkh:divider| ; 56 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Div1|lpm_divide_agm:auto_generated|sign_div_unsign_bkh:divider                       ;              ;
+;                |alt_u_div_13f:divider|    ; 56 (56)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Div1|lpm_divide_agm:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_13f:divider ;              ;
+;       |lpm_divide:Mod1|                   ; 24 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Mod1                                                                                 ;              ;
+;          |lpm_divide_d8m:auto_generated|  ; 24 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Mod1|lpm_divide_d8m:auto_generated                                                   ;              ;
+;             |sign_div_unsign_bkh:divider| ; 24 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Mod1|lpm_divide_d8m:auto_generated|sign_div_unsign_bkh:divider                       ;              ;
+;                |alt_u_div_13f:divider|    ; 24 (24)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Mod1|lpm_divide_d8m:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_13f:divider ;              ;
+;       |lpm_divide:Mod2|                   ; 58 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Mod2                                                                                 ;              ;
+;          |lpm_divide_d8m:auto_generated|  ; 58 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Mod2|lpm_divide_d8m:auto_generated                                                   ;              ;
+;             |sign_div_unsign_bkh:divider| ; 58 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Mod2|lpm_divide_d8m:auto_generated|sign_div_unsign_bkh:divider                       ;              ;
+;                |alt_u_div_13f:divider|    ; 58 (58)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|gettempword:my_gettempword|lpm_divide:Mod2|lpm_divide_d8m:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_13f:divider ;              ;
+;    |mul16:my_mul16|                       ; 30 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|mul16:my_mul16                                                                                                             ;              ;
+;       |lpm_mult:Mult0|                    ; 30 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|mul16:my_mul16|lpm_mult:Mult0                                                                                              ;              ;
+;          |mult_a7t:auto_generated|        ; 30 (30)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|mul16:my_mul16|lpm_mult:Mult0|mult_a7t:auto_generated                                                                      ;              ;
+;    |operateselector:my_operateselector|   ; 15 (15)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|operateselector:my_operateselector                                                                                         ;              ;
+;    |segselector:my_segselector|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|segselector:my_segselector                                                                                                 ;              ;
+;    |sub32:my_sub32|                       ; 16 (16)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|sub32:my_sub32                                                                                                             ;              ;
+;    |wordtranslator:my_wordtranslator|     ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |eda11|wordtranslator:my_wordtranslator                                                                                           ;              ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 0     ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |eda11|operateselector:my_operateselector|Mux24 ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |eda11|gettempword:my_gettempword|Mux0          ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; No         ; |eda11|operateselector:my_operateselector|Mux27 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: mul16:my_mul16|lpm_mult:Mult0     ;
++------------------------------------------------+-------------+---------------------+
+; Parameter Name                                 ; Value       ; Type                ;
++------------------------------------------------+-------------+---------------------+
+; AUTO_CARRY_CHAINS                              ; ON          ; AUTO_CARRY          ;
+; IGNORE_CARRY_BUFFERS                           ; OFF         ; IGNORE_CARRY        ;
+; AUTO_CASCADE_CHAINS                            ; ON          ; AUTO_CASCADE        ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF         ; IGNORE_CASCADE      ;
+; LPM_WIDTHA                                     ; 4           ; Untyped             ;
+; LPM_WIDTHB                                     ; 4           ; Untyped             ;
+; LPM_WIDTHP                                     ; 8           ; Untyped             ;
+; LPM_WIDTHR                                     ; 8           ; Untyped             ;
+; LPM_WIDTHS                                     ; 1           ; Untyped             ;
+; LPM_REPRESENTATION                             ; UNSIGNED    ; Untyped             ;
+; LPM_PIPELINE                                   ; 0           ; Untyped             ;
+; LATENCY                                        ; 0           ; Untyped             ;
+; INPUT_A_IS_CONSTANT                            ; NO          ; Untyped             ;
+; INPUT_B_IS_CONSTANT                            ; NO          ; Untyped             ;
+; USE_EAB                                        ; OFF         ; Untyped             ;
+; MAXIMIZE_SPEED                                 ; 5           ; Untyped             ;
+; DEVICE_FAMILY                                  ; Cyclone III ; Untyped             ;
+; CARRY_CHAIN                                    ; MANUAL      ; Untyped             ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT         ; TECH_MAPPER_APEX20K ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO        ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0           ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0           ; Untyped             ;
+; CBXI_PARAMETER                                 ; mult_a7t    ; Untyped             ;
+; INPUT_A_FIXED_VALUE                            ; Bx          ; Untyped             ;
+; INPUT_B_FIXED_VALUE                            ; Bx          ; Untyped             ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF         ; Untyped             ;
++------------------------------------------------+-------------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: gettempword:my_gettempword|lpm_divide:Div1 ;
++------------------------+----------------+---------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                              ;
++------------------------+----------------+---------------------------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                                           ;
+; LPM_WIDTHD             ; 4              ; Untyped                                           ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                           ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                           ;
+; LPM_PIPELINE           ; 0              ; Untyped                                           ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                           ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                           ;
+; CBXI_PARAMETER         ; lpm_divide_agm ; Untyped                                           ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                           ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                           ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                        ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                      ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                      ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                    ;
++------------------------+----------------+---------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: gettempword:my_gettempword|lpm_divide:Mod1 ;
++------------------------+----------------+---------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                              ;
++------------------------+----------------+---------------------------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                                           ;
+; LPM_WIDTHD             ; 4              ; Untyped                                           ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                           ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                           ;
+; LPM_PIPELINE           ; 0              ; Untyped                                           ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                           ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                           ;
+; CBXI_PARAMETER         ; lpm_divide_d8m ; Untyped                                           ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                           ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                           ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                        ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                      ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                      ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                    ;
++------------------------+----------------+---------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: gettempword:my_gettempword|lpm_divide:Div0 ;
++------------------------+----------------+---------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                              ;
++------------------------+----------------+---------------------------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                                           ;
+; LPM_WIDTHD             ; 7              ; Untyped                                           ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                           ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                           ;
+; LPM_PIPELINE           ; 0              ; Untyped                                           ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                           ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                           ;
+; CBXI_PARAMETER         ; lpm_divide_dgm ; Untyped                                           ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                           ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                           ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                        ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                      ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                      ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                    ;
++------------------------+----------------+---------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: gettempword:my_gettempword|lpm_divide:Mod0 ;
++------------------------+----------------+---------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                              ;
++------------------------+----------------+---------------------------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                                           ;
+; LPM_WIDTHD             ; 4              ; Untyped                                           ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                           ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                           ;
+; LPM_PIPELINE           ; 0              ; Untyped                                           ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                           ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                           ;
+; CBXI_PARAMETER         ; lpm_divide_d8m ; Untyped                                           ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                           ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                           ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                        ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                      ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                      ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                    ;
++------------------------+----------------+---------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: gettempword:my_gettempword|lpm_divide:Mod2 ;
++------------------------+----------------+---------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                              ;
++------------------------+----------------+---------------------------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                                           ;
+; LPM_WIDTHD             ; 4              ; Untyped                                           ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                           ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                           ;
+; LPM_PIPELINE           ; 0              ; Untyped                                           ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                           ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                           ;
+; CBXI_PARAMETER         ; lpm_divide_d8m ; Untyped                                           ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                           ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                           ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                        ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                      ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                      ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                    ;
++------------------------+----------------+---------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance                        ;
++---------------------------------------+-------------------------------+
+; Name                                  ; Value                         ;
++---------------------------------------+-------------------------------+
+; Number of entity instances            ; 1                             ;
+; Entity Instance                       ; mul16:my_mul16|lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 4                             ;
+;     -- LPM_WIDTHB                     ; 4                             ;
+;     -- LPM_WIDTHP                     ; 8                             ;
+;     -- LPM_REPRESENTATION             ; UNSIGNED                      ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                            ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                            ;
+;     -- USE_EAB                        ; OFF                           ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                          ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                            ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                            ;
++---------------------------------------+-------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "operateselector:my_operateselector"                                                                                                           ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                                                       ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+; in1  ; Input  ; Warning  ; Input port expression (8 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "in1[31..8]" will be connected to GND. ;
+; in2  ; Input  ; Warning  ; Input port expression (8 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "in2[31..8]" will be connected to GND. ;
+; in3  ; Input  ; Warning  ; Input port expression (8 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "in3[31..8]" will be connected to GND. ;
+; out  ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (8 bits) it drives; bit(s) "out[31..8]" have no fanouts                      ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mul16:my_mul16"                                                                                                                               ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                                                       ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+; in1  ; Input  ; Warning  ; Input port expression (4 bits) is smaller than the input port (16 bits) it drives.  Extra input bit(s) "in1[15..4]" will be connected to GND. ;
+; in2  ; Input  ; Warning  ; Input port expression (4 bits) is smaller than the input port (16 bits) it drives.  Extra input bit(s) "in2[15..4]" will be connected to GND. ;
+; out  ; Output ; Warning  ; Output or bidir port (16 bits) is wider than the port expression (8 bits) it drives; bit(s) "out[15..8]" have no fanouts                      ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "sub32:my_sub32"                                                                                                                               ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                                                       ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+; in1  ; Input  ; Warning  ; Input port expression (4 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "in1[31..4]" will be connected to GND. ;
+; in2  ; Input  ; Warning  ; Input port expression (4 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "in2[31..4]" will be connected to GND. ;
+; out  ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (8 bits) it drives; bit(s) "out[31..8]" have no fanouts                      ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "add32:my_add32"                                                                                                                               ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                                                       ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+; in1  ; Input  ; Warning  ; Input port expression (4 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "in1[31..4]" will be connected to GND. ;
+; in2  ; Input  ; Warning  ; Input port expression (4 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "in2[31..4]" will be connected to GND. ;
+; out  ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (8 bits) it drives; bit(s) "out[31..8]" have no fanouts                      ;
++------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.0 Build 156 04/24/2013 SJ Full Version
+    Info: Processing started: Mon Nov 22 22:34:09 2021
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off eda11 -c eda11
+Info (11104): Parallel Compilation has detected 12 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 6 of the 6 physical processors detected instead.
+Info (12021): Found 9 design units, including 9 entities, in source file eda11.v
+    Info (12023): Found entity 1: add32
+    Info (12023): Found entity 2: sub32
+    Info (12023): Found entity 3: mul16
+    Info (12023): Found entity 4: operateselector
+    Info (12023): Found entity 5: wordtranslator
+    Info (12023): Found entity 6: clock
+    Info (12023): Found entity 7: gettempword
+    Info (12023): Found entity 8: segselector
+    Info (12023): Found entity 9: eda11
+Warning (10236): Verilog HDL Implicit Net warning at eda11.v(131): created implicit net for "sign"
+Info (12127): Elaborating entity "eda11" for the top level hierarchy
+Info (12128): Elaborating entity "add32" for hierarchy "add32:my_add32"
+Info (12128): Elaborating entity "sub32" for hierarchy "sub32:my_sub32"
+Info (12128): Elaborating entity "mul16" for hierarchy "mul16:my_mul16"
+Info (12128): Elaborating entity "operateselector" for hierarchy "operateselector:my_operateselector"
+Info (12128): Elaborating entity "gettempword" for hierarchy "gettempword:my_gettempword"
+Warning (10235): Verilog HDL Always Construct warning at eda11.v(93): variable "a" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10230): Verilog HDL assignment warning at eda11.v(94): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at eda11.v(95): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at eda11.v(96): truncated value with size 32 to match size of target (4)
+Info (12128): Elaborating entity "wordtranslator" for hierarchy "wordtranslator:my_wordtranslator"
+Info (12128): Elaborating entity "segselector" for hierarchy "segselector:my_segselector"
+Info (278001): Inferred 6 megafunctions from design logic
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "mul16:my_mul16|Mult0"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "gettempword:my_gettempword|Div1"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "gettempword:my_gettempword|Mod1"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "gettempword:my_gettempword|Div0"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "gettempword:my_gettempword|Mod0"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "gettempword:my_gettempword|Mod2"
+Info (12130): Elaborated megafunction instantiation "mul16:my_mul16|lpm_mult:Mult0"
+Info (12133): Instantiated megafunction "mul16:my_mul16|lpm_mult:Mult0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHA" = "4"
+    Info (12134): Parameter "LPM_WIDTHB" = "4"
+    Info (12134): Parameter "LPM_WIDTHP" = "8"
+    Info (12134): Parameter "LPM_WIDTHR" = "8"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_a7t.tdf
+    Info (12023): Found entity 1: mult_a7t
+Info (12130): Elaborated megafunction instantiation "gettempword:my_gettempword|lpm_divide:Div1"
+Info (12133): Instantiated megafunction "gettempword:my_gettempword|lpm_divide:Div1" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_agm.tdf
+    Info (12023): Found entity 1: lpm_divide_agm
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_bkh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_bkh
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_13f.tdf
+    Info (12023): Found entity 1: alt_u_div_13f
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_unc.tdf
+    Info (12023): Found entity 1: add_sub_unc
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_vnc.tdf
+    Info (12023): Found entity 1: add_sub_vnc
+Info (12130): Elaborated megafunction instantiation "gettempword:my_gettempword|lpm_divide:Mod1"
+Info (12133): Instantiated megafunction "gettempword:my_gettempword|lpm_divide:Mod1" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_d8m.tdf
+    Info (12023): Found entity 1: lpm_divide_d8m
+Info (12130): Elaborated megafunction instantiation "gettempword:my_gettempword|lpm_divide:Div0"
+Info (12133): Instantiated megafunction "gettempword:my_gettempword|lpm_divide:Div0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "7"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_dgm.tdf
+    Info (12023): Found entity 1: lpm_divide_dgm
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_ekh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_ekh
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_73f.tdf
+    Info (12023): Found entity 1: alt_u_div_73f
+Warning (14284): Synthesized away the following node(s):
+    Warning (14285): Synthesized away the following LCELL buffer node(s):
+        Warning (14320): Synthesized away node "mul16:my_mul16|lpm_mult:Mult0|mult_a7t:auto_generated|le5a[4]"
+Warning (12241): 4 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13014): Ignored 48 buffer(s)
+    Info (13016): Ignored 4 CARRY_SUM buffer(s)
+    Info (13019): Ignored 44 SOFT buffer(s)
+Info (286030): Timing-Driven Synthesis is running
+Info (17016): Found the following redundant logic cells in design
+    Info (17048): Logic cell "gettempword:my_gettempword|lpm_divide:Mod1|lpm_divide_d8m:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_13f:divider|add_sub_7_result_int[0]~0"
+    Info (17048): Logic cell "gettempword:my_gettempword|lpm_divide:Mod1|lpm_divide_d8m:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_13f:divider|add_sub_6_result_int[0]~10"
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "clk"
+Info (21057): Implemented 277 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 13 input pins
+    Info (21059): Implemented 12 output pins
+    Info (21061): Implemented 252 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 11 warnings
+    Info: Peak virtual memory: 4632 megabytes
+    Info: Processing ended: Mon Nov 22 22:34:10 2021
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:02
+
+

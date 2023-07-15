@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="eda12">
+		<CBX_INST_ENTRY INSTANCE_NAME="|eda12|gettempword:my_gettempword|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_dgm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|eda12|gettempword:my_gettempword|lpm_divide:Mod1" CBX_FILE_NAME="lpm_divide_d8m.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|eda12|mul16:my_mul16|lpm_mult:Mult0" CBX_FILE_NAME="mult_a7t.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|eda12|gettempword:my_gettempword|lpm_divide:Div1" CBX_FILE_NAME="lpm_divide_agm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|eda12|gettempword:my_gettempword|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_d8m.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|eda12|gettempword:my_gettempword|lpm_divide:Mod2" CBX_FILE_NAME="lpm_divide_d8m.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

@@ -1,0 +1,5 @@
+Info (10281): Verilog HDL Declaration information at eda2.v(362): object "IN_5c" differs only in case from object "in_5c" in the same scope
+Info (10281): Verilog HDL Declaration information at eda2.v(362): object "IN_10c" differs only in case from object "in_10c" in the same scope
+Info (10281): Verilog HDL Declaration information at eda2.v(362): object "IN_50c" differs only in case from object "in_50c" in the same scope
+Info (10281): Verilog HDL Declaration information at eda2.v(362): object "OUT_15c" differs only in case from object "out_15c" in the same scope
+Info (10281): Verilog HDL Declaration information at eda2.v(362): object "OUT_25c" differs only in case from object "out_25c" in the same scope

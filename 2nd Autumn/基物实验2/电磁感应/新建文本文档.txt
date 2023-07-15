@@ -1,0 +1,78 @@
+再计算有芯线圈，有芯线圈2的电阻已经在d)给出，为$R_S=131.66\Omega$，电感值为$L_S=64.40mH$；我们再利用i)部分计算出的$I_S$、$I_P$随$R_L$变化的数据进行计算，有下表：
+\begin{table}[H]\begin{center}
+    \newgeometry{a4paper,left=2cm,right=2cm}
+        \caption{计算有芯线圈反射电阻和反射电抗表格}
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            负载电阻$R_L/\Omega$&100&200&300&400&500\\
+            \hline
+            初级线圈电流$(I_P=V_{R'}/R')/mA$&9.497&8.803&8.407&8.157&8.013\\
+            \hline
+            次级线圈电流$(I_S=V_{O}/R_L)/mA$&6.750&5.610&4.650&4.028&3.556\\
+            \hline
+            反射电阻$(R_R=\frac{I_S^2}{I_P^2}(R_S+R_L))/\Omega$&117.04&134.69&132.07&129.62&124.39\\
+            \hline
+            反射电抗$(X_R=2\pi f\frac{I_S^2}{I_P^2}L_S)/\Omega$&104.23&83.79&63.13&50.30&40.63\\
+            \hline
+            \hline
+            负载电阻$R_L/\Omega$&600&700&800&900&1000\\
+            \hline
+            初级线圈电流$(I_P=V_{R'}/R')/mA$&7.943&7.883&7.857&7.837&7.823\\
+            \hline
+            次级线圈电流$(I_S=V_{O}/R_L)/mA$&3.158&2.840&2.575&2.354&2.167\\
+            \hline
+            反射电阻$(R_R=\frac{I_S^2}{I_P^2}(R_S+R_L))/\Omega$&115.67&107.34&251.40&93.12&86.83\\
+            \hline
+            反射电抗$(X_R=2\pi f\frac{I_S^2}{I_P^2}L_S)/\Omega$&32.62&26.78&55.67&18.62&15.83\\
+            \hline
+        \end{tabular}
+    \restoregeometry
+\end{center}\end{table}
+
+
+
+
+
+
+
+
+
+
+类似地，我们对有芯线圈也作分析：
+\begin{table}[H]\begin{center}
+    \newgeometry{a4paper,left=2cm,right=2cm}
+        \caption{有芯线圈等效初级感抗和反射感抗表格}
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            负载电阻$R_L/\Omega$&100&200&300&400&500\\           
+            \hline
+            反射电阻$R_R/\Omega$&82.40&125.58&155.33&173.36&181.61\\
+            \hline
+            反射电抗$X_R/\Omega$&104.23&83.79&63.13&50.30&40.63\\
+            \hline
+            等效感抗$X_{PE}/\Omega$&220.53&255.90&289.28&317.22&339.45\\
+            \hline
+            \hline
+            负载电阻$R_L/\Omega$&600&700&800&900&1000\\
+            \hline
+            反射电阻$R_R/\Omega$&183.41&181.21&177.22&169.99&162.88\\
+            \hline
+            反射电抗$X_R/\Omega$&32.62&26.78&55.67&18.62&15.83\\
+            \hline
+            等效感抗$X_{PE}/\Omega$&356.56&370.23&380.98&389.69&396.60\\
+            \hline
+        \end{tabular}
+    \restoregeometry
+\end{center}\end{table}
+绘制出等效初级感抗$X_{PE}$随反射感抗$X_R$变化的图线为：
+\begin{figure}[H]\begin{center}
+    \includegraphics*[scale = 0.5]{graph2.png}
+\end{center}\end{figure}
+直线拟合图线如下：
+\begin{figure}[H]\begin{center}
+    \includegraphics*[scale = 0.5]{graph21.png}
+\end{center}\end{figure}
+拟合曲线斜率$k=-0.9974$，截距$b=423.84\Omega$\\斜率接近于-1，而截距与初级线圈自身感抗$X_P=2\pi fL_1=2\pi\times 1000\times 72.24\times 10^{-3}\Omega=453.90\Omega$十分接近. 故曲线$X_{PE}=kX_R+b$仍可以写作
+$X_{PE}=-X_R+X_P$，这进一步验证了实验的正确性.
+
+

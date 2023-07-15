@@ -1,0 +1,36 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath}
+\usepackage{diagbox}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{adjustbox}
+\usepackage{subfigure}
+\usepackage{geometry}
+\usepackage{pifont}
+\usepackage{gensymb}
+\usepackage{bm}
+\begin{document}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\newgeometry{left=2cm,bottom=4cm,right=2cm}
+\linespread{1.4}
+\title{\vspace{-5em}\heiti偏振光学实验报告\vspace{-2.5em}}
+\date{}
+\maketitle
+\begin{center}
+{\fangsong 徐浩博\quad 软件02\quad2020010108}
+\end{center}
+Dunn Index $$DI=\frac{\min\limits_{1\leq i\textless j \leq n}d_{min}(c_i,c_j)}{\max\limits_{1\leq l \leq n }diam(c_l)}$$
+其中$d_{min}(c_i,c_j)$表示集合$c_i$一点和集合$c_j$一点的所有可能距离的最小值，\par $diam(c_i)$表示集合$c_i$内任意两点所有可能距离的最大值.\\\\
+\hspace{-2em}
+Davies-Bouldin Index
+$$DBI=\frac{1}{n}\sum\limits_{i=1}{n}\max\limits_{1\leq j\leq, i\neq j}\frac{avg(c_i)+avg(c_j)}{d(\overline{c_i},\overline{c_j})}$$
+其中$avg(c_i)$为集合内任两点距离的平均值，$\overline{c_i}$为集合$c_i$的中点.
+$$J=\sum\limits_{i=1}^{k}\sum\limits_{x_j\in c_k}||x_j-\overline{c_i}||$$\\
+\\\hspace{-2em}
+最短距离：$\min\limits_{a\in A, b\in B}d(a,b)$\\
+最长距离：$\min\limits_{a\in A, b\in B}d(a,b)$\\
+平均距离：$\frac{1}{|A||B|}\sum\limits_{a\in A}\sum\limits_{b\in B}d(a,b)$
+\end{document}
+

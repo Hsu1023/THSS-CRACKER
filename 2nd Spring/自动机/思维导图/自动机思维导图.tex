@@ -1,0 +1,73 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath}
+\usepackage{diagbox}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{adjustbox}
+\usepackage{subfigure}
+\usepackage{geometry}
+\usepackage{pifont}
+\usepackage{gensymb}
+\usepackage{bm}
+\usepackage{tikz}
+\usepackage{amstext}
+\usepackage{amsfonts}
+
+%引入代码块
+\usepackage{listings}
+
+\usepackage{xcolor}
+%设置代码块格式
+
+\definecolor{CPPGray}{RGB}{211,211,211}
+\lstset{
+ columns=fixed,       
+ numbers=left,   % 在左侧显示行号
+ numberstyle=\tiny\color{gray},% 设定行号格式
+ frame=none,%none,% 不显示背景边框
+ %aboveskip=1em,
+ backgroundcolor=\color[RGB]{230,230,230},% 设定背景颜色
+ keywordstyle=\color[RGB]{40,40,255},% 设定关键字颜色
+ numberstyle=\footnotesize\color{darkgray},           
+ commentstyle=\it\color[RGB]{0,96,96},% 设置代码注释的格式
+ stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},% 设置字符串格式
+ showstringspaces=true,% 不显示字符串中的空格
+ language=c++, % 设置语言
+ morekeywords = {include,ull,int,double,return,static,typedef,if,else,for,long,void,class,struct,ll},                % 自加新的关键字（必须前后都是空格）
+}
+
+\begin{document}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\newgeometry{left=2cm,bottom=3cm,right=2cm}
+\linespread{1.4}
+\title{\vspace{-5em}\heiti 形式语言与自动机\vspace{-2.5em}}
+\date{}
+\maketitle
+\begin{center}
+{\fangsong 徐浩博\quad 软件02\quad2020010108}
+\end{center}\begin{center}
+\begin{tabular}{c|l|l}
+    \hline
+    DFA&五元组$\{Q,\Sigma,\delta,q_0,F\}$&$q_0\in Q, F\subseteq Q,\delta:Q\times \Sigma\to Q$\\
+    \hline
+    NFA&五元组$\{Q,\Sigma\cup\{\epsilon\},\delta,q_0,F\}$&$q_0\in Q, F\subseteq Q,\delta:Q\times \Sigma\cup\{\epsilon\}\to 2^Q$\\
+    \hline
+    文法&四元组$\{V,T,S,P\}$&Variant、Terminant、Start、Production,$V\cap T=\emptyset$\\
+    \hline
+    PDA&七元组$\{Q,\Sigma,\Gamma,\delta,q_0,Z_0,F\}$&$\Sigma$输入符号，$\Gamma$栈符号，$\delta:Q\times (\Sigma\cup \{\epsilon\})\times \Gamma \to 2^{Q\times \Gamma^*}$\\
+    \hline
+    空栈型PDA&六元组$\{Q,\Sigma,\Gamma,\delta,q_0,Z_0\}$&$\Sigma$输入符号，$\Gamma$栈符号，$\delta:Q\times (\Sigma\cup \{\epsilon\})\times \Gamma \to 2^{Q\times \Gamma^*}$\\
+    \hline
+    图灵机&七元组$\{Q,\Sigma,\Gamma,\delta,q_0,B,F\}$&$\Sigma\subset \Gamma, B\in \Gamma-\Sigma,\delta:Q\times \Gamma \to Q\times \Gamma \times \{L,R\}$
+\end{tabular}\end{center}
+\newpage
+NFA转DFA：\\
+\begin{figure*}[htbp]
+\includegraphics*[scale = 1]{NFAtoDFA.PNG}
+\includegraphics*[scale = 1]{NFAtoDFA2.PNG}
+\end{figure*}
+
+\end{document}
+

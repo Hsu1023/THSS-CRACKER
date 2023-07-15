@@ -1,0 +1,239 @@
+module debounce(in, clk, out);
+	input in;
+	input clk;
+	output reg out;
+	
+	parameter DELAY=270000-1;
+	reg [18:0]count;
+	reg last;
+	
+	always@(posedge clk)
+	begin
+		if(last!=in)
+		begin
+			count<=0;
+			last<=in;
+		end
+		else if(count==DELAY)
+		begin
+			count<=0;
+			out<=in;
+		end
+		else count<=count+1;
+	end
+endmodule
+
+
+//七段显示译码器，十/十六进制数转化为段选信号
+module numbertranslator(in, out);
+	input [3:0] in;
+	output reg [6:0] out;
+	always@(in)
+	begin
+		case(in)
+			4'b0000: out = 7'b1000000;//0
+			4'b0001: out = 7'b1111001;//1
+			4'b0010: out = 7'b0100100;//2
+			4'b0011: out = 7'b0110000;//3
+			4'b0100: out = 7'b0011001;//4
+			4'b0101: out = 7'b0010010;//5
+			4'b0110: out = 7'b0000010;//6
+			4'b0111: out = 7'b1111000;//7
+			4'b1000: out = 7'b0000000;//8
+			4'b1001: out = 7'b0010000;//9
+			default: out = 7'b1111111;
+		endcase
+	end
+endmodule
+
+//获取当前显示的数字，输入当前要显示的位数，输出需要显示的十进制数
+module gettempnumber(outnumber, wordselector, tempnumber);
+	input [9:0]outnumber;
+	input [1:0]wordselector;
+	output reg [4:0]tempnumber;
+	always@(outnumber or wordselector)
+	begin
+		case(wordselector)
+			2'b00: tempnumber = (outnumber/100)%10;
+			2'b01: tempnumber = (outnumber/10)%10;
+			2'b10: tempnumber = (outnumber)%10;
+			default: tempnumber = -2;
+		endcase
+	end
+endmodule
+//位选信号，wordselector翻译成哪一位数码管低电平显示
+module segtranslator(wordselector, segout);
+	input [1:0]wordselector;
+	output reg[5:0] segout;
+	always@(wordselector)
+	begin
+		case(wordselector)
+			2'b00: segout = 6'b111110;//第1位位选信号
+			2'b01: segout = 6'b111101;//第2位位选信号
+			2'b10: segout = 6'b111011;//第3位位选信号
+			default: segout =6'b111111;//否则都不选
+		endcase
+	end
+endmodule
+
+//分频模块，输入clk，输出分频后的时钟
+module clock(clk, clk_);
+	input clk;
+	reg [30:0] count;
+	output clk_;
+	always@(posedge clk)
+	begin
+		count = count + 1;
+	end
+	assign clk_ = count[15];
+endmodule
+
+//时钟计数器，每次时钟上升沿wordselector计数加一
+module counter(clk_, wordselector);
+	input clk_;
+	output reg [1:0] wordselector;
+	always@(posedge clk_)
+	begin
+		wordselector = wordselector + 1;
+	end
+endmodule
+
+module FSM(clk, reset, IN_5c,IN_10c,IN_50c,OUT_15c,OUT_25c, state);
+	input clk, reset;
+	input IN_5c,IN_10c,IN_50c;
+	input OUT_15c,OUT_25c;
+	
+	
+	
+	parameter GOT_WAITING=0;
+	parameter GOT_5c=1;
+	parameter GOT_10c=2;
+	parameter GOT_50c=3;
+	parameter RETURN_15c=4;
+	parameter RETURN_25c=5;
+	
+	output reg[2:0] state;
+	
+	reg[2:0]next=GOT_WAITING;
+	
+	always@(posedge clk or posedge reset)
+	begin
+		if(reset) state<=GOT_WAITING;
+		else state<=next;
+	end
+	
+	always@(state or IN_5c or IN_10c or IN_50c or OUT_15c or OUT_25c)
+	begin
+		case(state)
+			GOT_WAITING:
+					if(IN_5c) next<=GOT_5c;
+					else if(IN_10c) next<=GOT_10c;
+					else if(IN_50c) next<=GOT_50c;
+					else if(OUT_15c)	next<=RETURN_15c;
+					else if(OUT_25c)	next<=RETURN_25c;
+					else next<=GOT_WAITING;
+			GOT_5c:	next<=GOT_WAITING;
+			GOT_10c:	next<=GOT_WAITING;			
+			GOT_50c:	next<=GOT_WAITING;		
+			RETURN_15c: next<=GOT_WAITING;
+			RETURN_25c: next<=GOT_WAITING;
+			default:	next<=GOT_WAITING;
+		endcase
+	end
+endmodule
+
+module calculator(reset, state, sum, error, success);
+	parameter GOT_WAITING=0;
+	parameter GOT_5c=1;
+	parameter GOT_10c=2;
+	parameter GOT_50c=3;
+	parameter RETURN_15c=4;
+	parameter RETURN_25c=5;
+	
+	input [2:0]state;
+	input reset;
+	output reg[9:0]sum=0;
+	output reg error=0;
+	output reg success=0;
+	
+	always@(state or reset)
+	begin
+		case(state)
+			GOT_5c:	
+			begin
+				sum<=sum+5;
+				error<=0;
+				success<=0;
+			end
+			GOT_10c: 
+			begin
+				sum<=sum+10;
+				error<=0;
+				success<=0;
+			end
+			GOT_50c:
+			begin
+				sum<=sum+50;
+				error<=0;
+				success<=0;
+			end	
+			RETURN_15c:
+			begin
+				if(sum>=15)
+				begin
+					sum<=sum-15;
+					error<=0;
+					success<=1;
+				end
+				else 
+				begin
+					error<=1;
+					success<=0;
+				end
+			end
+			RETURN_25c:
+			begin
+				if(sum>=25)
+				begin
+					sum<=sum-25;
+					error<=0;
+					success<=1;
+				end
+				else 
+				begin
+					error<=1;
+					success<=0;
+				end
+			end
+		endcase
+		if(reset)
+		begin
+			sum<=0;
+			error<=0;
+			success<=0;
+		end
+	end
+endmodule
+
+module eda2(clk, reset, IN_5c,IN_10c,IN_50c,OUT_15c,OUT_25c, error, success, wordout, segout);
+	input	clk, reset, IN_5c,IN_10c,IN_50c,OUT_15c,OUT_25c; //时钟信号
+	output [6:0] wordout;//输出的段选信号
+	output [5:0] segout;//输出的位选信号
+	output success, error;
+	
+	wire	[9:0]sum;
+	wire [1:0]wordselector;//当前显示第几位
+	wire [4:0]tempnumber;//当前要显示的位数的十进制数是多少
+	wire clk_;// 分频后的时钟
+	wire [2:0]state;
+	wire resetsignal;
+	
+	clock my_clock(clk, clk_);//分频模块，输入clk，输出分频后的时钟
+	counter my_counter(clk_, wordselector);//时钟计数器，每次时钟上升沿wordselector计数加一
+	segtranslator my_segtranslator(wordselector, segout);//将当前显示第几位转化为位选信号
+	FSM my_FSM(clk, reset, IN_5c,IN_10c,IN_50c,OUT_15c,OUT_25c, state);
+	calculator my_calculator(reset, state, sum);
+	gettempnumber my_gettempnumber(sum, wordselector, tempnumber);//获取当前位需要显示的数，以十进制表示
+	numbertranslator my_numbertranslator(tempnumber, wordout);//将十进制数转化为段选信号
+
+endmodule

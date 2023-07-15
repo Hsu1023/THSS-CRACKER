@@ -1,0 +1,93 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath}
+\usepackage{diagbox}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{adjustbox}
+\usepackage{subfigure}
+\usepackage{geometry}
+\usepackage{pifont}
+\usepackage{gensymb}
+\usepackage{bm}
+\usepackage{amstext}
+\usepackage{amsfonts}
+%引入代码块
+\usepackage{listings}
+
+\usepackage{xcolor}
+%设置代码块格式
+
+\definecolor{CPPGray}{RGB}{211,211,211}
+\lstset{
+ columns=fixed,       
+ numbers=left,   % 在左侧显示行号
+ numberstyle=\tiny\color{gray},% 设定行号格式
+ frame=none,%none,% 不显示背景边框
+ %aboveskip=1em,
+ backgroundcolor=\color[RGB]{230,230,230},% 设定背景颜色
+ keywordstyle=\color[RGB]{40,40,255},% 设定关键字颜色
+ numberstyle=\footnotesize\color{darkgray},           
+ commentstyle=\it\color[RGB]{0,96,96},% 设置代码注释的格式
+ stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},% 设置字符串格式
+ showstringspaces=true,% 不显示字符串中的空格
+ language=c++, % 设置语言
+ morekeywords = {include,ull,int,double,return,static,typedef,if,else,for,long,void,class,struct,ll},                % 自加新的关键字（必须前后都是空格）
+}
+
+\begin{document}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\newgeometry{left=2cm,bottom=3cm,right=2cm}
+\linespread{1.4}
+\title{\vspace{-5em}\heiti算法分析与设计基础\ \ 第六周作业\vspace{-2.5em}}
+\date{}
+\maketitle
+\begin{center}
+{\fangsong 徐浩博\quad 软件02\quad2020010108}
+\end{center}
+
+
+\subsection*{Problem 1}
+我们修改EXTENDED-BOTTOM-UP-CUT-ROD(p, n)
+\begin{lstlisting}
+EXTENDED-BOTTOM-UP-CUT-ROD(p, n, c):
+	let r[0...n] and s[0...n] be new arrays
+	r[0] = 0
+	for j = 1 to n:
+		q = p[j]
+		s[j] = j
+		for i = 1 to j - 1:
+			if q < r[j - i] + p[i] - c:
+				q = r[j - i] + p[i] - c
+				s[j] = i
+		r[j] = q
+	return r and s
+\end{lstlisting}
+同时PRINT-CUT-ROD-SOLUTION保持不变：
+\begin{lstlisting}
+PRINT-CUT-ROD-SOLUTION(p, n, c):
+	(r, s) = EXTENDED-BOTTOM-UP-CUT-ROD(p, n, c)
+	while n > 0:
+		print s[n]
+		n = n - s[n]
+\end{lstlisting}
+
+\subsection*{Problem 2}
+我们考虑四个矩阵相乘，$A_{6\times 5},\ B_{5\times 10},\ C_{10\times 8},\ D_{8\times 20}$，那么p数组就对应为：\\
+
+\begin{table}[H]\begin{center}
+\begin{tabular}{c|c|c|c|c}
+	\hline
+	p[0]&p[1]&p[2]&p[3]&p[4]\\
+	\hline
+	6&5&10&8&20\\
+	\hline
+\end{tabular}\end{center}
+\end{table}
+根据贪心的算法，p[0]p[1]p[4]最小，应该划分为(1,1),(2,4)两个子问题，(2,4)中又有p[1]p[3]p[4]最小，故划分为(1,3),(4,4)两个子问题，因此乘法顺序可以确定为$(A\times((B\times C)\times D))$，总计算规模为：
+$$p[1]\times p[2]\times p[3]+p[1]\times p[3]\times p[4]+p[0]\times p[1]\times p[4]=1800$$
+而根据动态规划的方法，最优的划分为$(A\times(B\times C))\times D$，总计算规模为：
+$$p[1]\times p[2]\times p[3]+p[0]\times p[1]\times p[3]+p[0]\times p[3]\times p[4]=1600$$
+由此可见，贪心算法并不一定总能给出最优解；上面举出的反例中，贪心求解只能求出次优解.
+\end{document}

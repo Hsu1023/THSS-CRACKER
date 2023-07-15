@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int mp[1005][1005];
+
+int main()
+{
+	srand(time(0));
+	freopen("temperature.in","w",stdout);
+	int n=50000,m=500000;
+	int range=1000;
+	printf("%d %d\n",n,m);
+	for(int i=1;i<=n;i++)
+	{
+		int u=rand()%range;
+		int v=rand()%range;
+		printf("%d %d %d\n",u-range/2,v-range/2,rand());
+	}
+	for(int i=1;i<=m;i++)
+	{
+		int u1=rand()%range,v1=rand()%range,u2=rand()%range,v2=rand()%range;
+		if(u1>u2)swap(u1,u2);
+		if(v1>v2)swap(v1,v2);
+		printf("%d %d %d %d\n",u1-range/2,v1-range/2,u2-range/2,v2-range/2);
+	}
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DeepLearning - DETAILS</title>
+    <link
+      href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container page-header">
+      <nav aria-label="..." style="margin-left: -50px">
+        <div class="pager">
+          <li class="previous">
+            <a href="/results"><span aria-hidden="true">&larr;</span> Back</a>
+          </li>
+        </div>
+      </nav>
+      {% if task.state %}
+      <h1>{{task.title}}&nbsp;&nbsp;&nbsp;&nbsp;<p class="label label-success" style="font-size:0.4em">已完成</p></h1>
+      {% else %}
+      <h1>{{task.title}}&nbsp;&nbsp;&nbsp;&nbsp;<p class="label label-danger" style="font-size:0.4em">训练中</p></h1>
+      {% endif %}
+    </div>
+    <div class="container page-body">
+      <div class="col-md-6 col-md-offset-1">
+
+        <div class="row">
+            <div class=" col-md-3">发起人</div>
+            <div class=" col-md-3">{{task.author}}</div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class=" col-md-3">创建时间</div>
+            <div class=" col-md-3">{{task.date|date:"m-d H:i:s"}}</div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class=" col-md-3">训练时长</div>
+            <div class=" col-md-3">{{span}}</div>
+        </div>
+        {% if task.state %}
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class=" col-md-3">结束时间</div>
+            <div class=" col-md-3">{{task.finished_date|date:"m-d H:i:s"}}</div>
+        </div>
+        {%endif%}
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class=" col-md-3">训练设备</div>
+            <div class=" col-md-3">{{task.device}}</div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class=" col-md-3">训练模型</div>
+            <div class=" col-md-3">{%if task.model%}LeNet{%else%}MLP{%endif%}</div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class=" col-md-3">优化器</div>
+            <div class=" col-md-3">{%if task.model%}Adam{%else%}SGD{%endif%}</div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class=" col-md-3">学习率</div>
+            <div class=" col-md-3">{{task.lr}}</div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class=" col-md-3">批次大小</div>
+            <div class=" col-md-3">{{task.batch_size}}</div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class=" col-md-3">训练轮次</div>
+            <div class=" col-md-3">{{task.epoch}}</div>
+        </div>
+        
+        {% if task.state %}
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class=" col-md-3">准确率</div>
+            <div class=" col-md-3">{{task.acc}}</div>
+        </div>
+        {%else%}
+          {% if logs%}
+          <div class="row">&nbsp;</div>
+          <div class="row">
+              <div class=" col-md-3">训练日志</div><div class="row"></div>
+              {% for log in logs%}
+              <div class=" col-md-7">{{log}}</div>
+              {% endfor %}
+          </div>
+          {% endif %}
+        {%endif%}
+      </div>
+      {% if task.state %}
+      <div class="col-md-5 col-md-offset-0">
+        <div><img src="/static/loss_pic/loss_id_{{task.id}}.jpg" style="transform: translateY(-10%);"/></div>
+      </div>
+      {%endif%}
+    </div>
+    <div class="container page-footer">
+      <nav aria-label="...">
+        <ul class="pager">
+          {% if previous_id < 0 %}
+          <li class="previous disabled"><a href="#">
+          {% else %}
+          <li class="previous"><a href="/details/{{previous_id}}">
+          {%endif%}
+          <span aria-hidden="true">&larr;</span> Previous</a></li>
+
+          {% if next_id < 0 %}
+          <li class="next disabled"><a href="#">
+            {% else %}
+          <li class="next"><a href="/details/{{next_id}}">
+            {%endif%}
+            
+          Next<span aria-hidden="true">&rarr;</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </body>
+</html>

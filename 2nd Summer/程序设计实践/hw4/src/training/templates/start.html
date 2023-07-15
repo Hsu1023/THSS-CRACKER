@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DeepLearning - START</title>
+    <link
+      href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container page-header">
+      <nav aria-label="..." style="margin-left: -50px">
+        <div class="pager">
+          <li class="previous">
+            <a href="/"><span aria-hidden="true">&larr;</span> Back</a>
+          </li>
+        </div>
+      </nav>
+      <h1>开始训练</h1>
+    </div>
+    <div class="container page-body">
+      <form action="/submit-post/" method="post">
+        <div class="row">&nbsp;</div>
+        <div class="row">
+          <div class="form-horizontal">
+            <div class="control-label col-md-2 col-md-offset-3">任务名称</div>
+            <div class="col-md-3">
+              <input
+                type="text"
+                class="form-control col-md-3"
+                placeholder="Task Name"
+                name="title"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+          <div class="form-horizontal">
+            <div class="control-label col-md-2 col-md-offset-3">发起人</div>
+            <div class="col-md-3">
+              <input
+                type="text"
+                class="form-control col-md-3"
+                placeholder="User Name"
+                name="author"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+          <div class="form-horizontal">
+            <div class="control-label col-md-2 col-md-offset-3">训练模型</div>
+            <div class="col-md-3">
+              <select
+                class="form-control"
+                name="model"
+                onchange="show_sub(this.options[this.options.selectedIndex].value)"
+              >
+                <option value="0">MLP</option>
+                <option value="1">LeNet</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+          <div class="form-horizontal">
+            <div class="control-label col-md-2 col-md-offset-3">优化器</div>
+            <div class="col-md-3">
+              <select
+                class="form-control"
+                name="optimizer"
+                onchange="show_sub(this.options[this.options.selectedIndex].value)"
+              >
+                <option value="0">SGD</option>
+                <option value="1">Adam</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+          <div class="form-horizontal">
+            <div class="control-label col-md-2 col-md-offset-3">学习率</div>
+            <div class="col-md-3">
+              <input
+                type="number"
+                step="0.0001"
+                value="0.001"
+                max="0.01"
+                min="0.0001"
+                class="form-control col-md-3"
+                name="lr"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+          <div class="form-horizontal">
+            <div class="control-label col-md-2 col-md-offset-3">批次大小</div>
+            <div class="col-md-3">
+              <input
+                type="number"
+                max="512"
+                value="256"
+                min="1"
+                class="form-control col-md-3"
+                name="batch_size"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+          <div class="form-horizontal">
+            <div class="control-label col-md-2 col-md-offset-3">训练轮次</div>
+            <div class="col-md-3">
+              <input
+                type="number"
+                value="10"
+                max="100"
+                min="1"
+                class="form-control col-md-3"
+                name="epoch"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row col-md-2 col-md-offset-5">
+          {% csrf_token %}
+          <button
+            type="button submit"
+            class="btn btn-primary"
+            style="width: 200px"
+          >
+            开始训练
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="container page-footer"></div>
+  </body>
+</html>

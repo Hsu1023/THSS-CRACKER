@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="eda1">
+		<CBX_INST_ENTRY INSTANCE_NAME="|eda1|div32:my_div32|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_8jm.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|eda1|gettempnumber:my_gettempnumber|lpm_divide:Mod2" CBX_FILE_NAME="lpm_divide_d8m.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

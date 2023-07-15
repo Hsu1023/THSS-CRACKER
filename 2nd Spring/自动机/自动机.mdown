@@ -1,0 +1,513 @@
+## Chapter 1
+
+拜伦：第一个给计算机写程序的人；图灵：人工智能之父、计算机科学之父、**计算机之父**；拜伦：现代计算机之父、博弈论之父；巴贝奇：差分机、分析机；丘奇：可计算理论
+
+关系：$R\subset A\times B$；等价关系：自反、传递、对称
+
+半群：(S,\*)，其中\*是满足**结合律**的二元运算. 若*还满足交换律，则为**交换半群**
+
+同构：(S,\*)和(T,$\circ$)是半群，若$f:S\to T$是双射且$f(a*b)=f(a)\circ f(b)，\forall a,b\in S$
+
+* 同构四步骤：选f使得Dom(f)=S，f单，f满，$f(a*b)=f(a)\circ f(b)$
+
+通路（边顺次相连）、路径（无重复边）、简单路径（无重复点）、树高（从0层开始）
+
+字符串前缀后缀包括空串
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613151759982.png" alt="image-20220613151759982" style="zoom:80%;" />
+
+$|\{\epsilon\}|=1，|\epsilon|=0$
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613151958227.png" alt="image-20220613151958227" style="zoom:80%;" />
+
+## Chapter 2
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613152925423.png" alt="image-20220613152925423" style="zoom:80%;" />
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613153344473.png" alt="image-20220613153344473" style="zoom:80%;" />
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613153400110.png" alt="image-20220613153400110" style="zoom:80%;" />
+
+M接受的语言：$L(M)=\{w\in \Sigma^*: \delta^*(q_0,w)\in F \}$
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613153905742.png" alt="image-20220613153905742" style="zoom:80%;" />
+
+## Chapter 3
+
+w被NFA接受：存在一条路径接受w
+
+w被NFA拒绝：NFA中不存在接受w的路径（对于每个路径，要么字符串输完不在终态，要么无法输完）
+
+![image-20220613155002790](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613155002790.png)
+
+注意与DFA不同点：$\epsilon$也可以作为输入、$\delta:Q\times \Sigma\cup\{\epsilon\}\to 2^Q$映射到状态的**幂集**
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613155217001.png" alt="image-20220613155217001" style="zoom:80%;" />
+
+状态转移是集合↑
+
+![image-20220613155313368](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613155313368.png)
+
+扩展转移函数（老麻烦了）：**与DFA相比，函数映射到一个集合**
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613155941362.png" alt="image-20220613155941362" style="zoom:80%;" />
+
+$\delta^*(1,b)=\{3,4,5,6,7\}$
+
+$\delta^*(1,bb)=\{4\}$
+
+$\delta^*(1,ba)=\{3,4,5,6,7\}$
+
+![image-20220613160230936](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613160230936.png)
+
+## Chapter 4
+
+单一终态的NFA：**任何NFA都等价于一个只有一个终态的NFA**（将所有终态用$\epsilon$转移到一个状态）
+
+正则语言的封闭性：
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613164146468.png" alt="image-20220613164146468" style="zoom:80%;" />
+
+*补要用DFA，原因是NFA一些因为没有合适转移的串在补的NFA里也没有合适转移；因此要用有明确转移的DFA*
+
+正则表示的定义：**三个基础、四个归纳形式**（基础不要忘了$\varnothing$）
+
+![image-20220613164347987](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613164347987.png)
+
+运算符优先级：*  、·  、+
+
+正则表示的语言定义：对语言从上面三个基础、四个归纳形式来定义
+
+没有两个连续0的字符串：(1+01)*(0+$\epsilon$)
+
+01交替的字符串：(0+$\epsilon$)(10)*(1+$\epsilon$)
+
+证明正则表示语言=正则语言：前推后从正则表示定义和正则语言封闭性，反推用状态消去构造
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613165244270.png" alt="image-20220613165244270"  />
+
+![image-20220613165742153](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613165742153.png)
+
+$r=r_1^*r_2(r_4+r_3r_1^*r_2)^*$
+
+正则语言的同态：$h:\Sigma\to T^*$拓展为$h(w)=h(w_1)\cdots h(w_n)（w=w_1\cdots w_n）$
+
+逆同态（映射到字符串集合）:$h^{-1}(L)=\{w|w\in \Sigma^*\wedge h(w)\in L\}$
+
+定理1：若L是正则语言，则h(L)也是正则语言
+
+定理2：若L是正则语言，则h^-1^(L)也是正则语言
+
+正则表示：连接运算的单位元是$\epsilon$，**零元是$\varnothing$**；并运算单位元是$\varnothing$
+
+## Chapter 5
+
+![image-20220613192228512](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613192228512.png)
+
+句子/句型
+
+推导闭包$\xRightarrow{*}$
+
+$L(G)=\{w|S\xRightarrow{*}w,w\in T^*\}$
+
+线性文法：产生式右侧最多一个变量，要么没变量，剩下的均是终结符串
+
+右线性文法：产生式右侧要么没变量，有变量则至多一个且在最右侧
+
+![image-20220613192751150](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613192751150.png)
+
+***正则文法（3型文法）***：左线性文法或右线性文法（二者只能出现一个）
+
+NFA转化为右线性文法易错点：
+
+![image-20220613193240303](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613193240303.png)
+
+积自动机，注意是DFA，语言是两个语言的并
+
+![image-20220613193316699](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220613193316699.png)
+
+注意F、S、$\delta$
+
+## Chapter 6
+
+判定算法：
+
+* w是否能被接受：DFA  O(n)  /  NFA  O(ns^2^) / 正则表达式转化为NFA
+* 正则语言是否为空：DFA  O(S) / 正则表达式  O(n)(符号数)
+* 判断两个正则语言是否相等：转化为DFA，两个DFA并起来，用填表法看两个初态是否可区分O(n^2^)
+* 正则语言是否无限：DFA初态到终态是否存在环
+
+***泵引理***：$(\forall m)( \exists w)(w\in L\wedge |w|\ge m\wedge( \forall  x,y,z)(\exist k) (xyz=w\wedge |xy|\le m\wedge y\neq \epsilon \rightarrow xy^kz\notin L) )$
+
+**注意k的选取可以与m,w,x,y,z有关，一般常用m、|y|**
+
+泵引理不是充分条件，而是必要条件
+
+## Chapter 7
+
+DFA状态集等价关系：$p,q\in Q, pRq\quad iff\quad \delta^*(p,w)\in F\Leftrightarrow \delta^*(q,w),\forall w $
+
+填表算法：基础是p终态、q非终态标记可区别；归纳定义状态r、s通过某个符号a转移到可区别的两个状态，则r、s可区别
+
+最优的DFA：用填表法计算出等价类后进行划分；可以反证状态数比M少的自动机来证明最优
+
+归约：$v+d\Rightarrow E+d\Rightarrow EOd\Rightarrow EOE\Rightarrow E$，推导$E\Rightarrow v+d$
+
+最左推导，最右推导：每次都替换最左/右侧的非终结符
+
+左句型：$S\xRightarrow[lm]{*}\alpha$
+
+语法分析树：内部节点非终结符、**叶节点为终结符或非终结符**，如果叶节点$\epsilon$则为父节点唯一子节点
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616132902012.png" alt="image-20220616132902012" style="zoom:67%;" />
+
+证明某语言是某文法的语言：要正反两方面说包含关系
+
+## Chapter 8
+
+文法二义性：**存在某字符串**有至少两种最左（或最右）推导$\Leftrightarrow$存在两棵不同的分析树
+
+一个CFG是否为二义的问题是不可判定的
+
+![image-20220616135003215](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616135003215.png)
+
+![image-20220616135253354](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616135253354.png)
+
+固有二义：CFL的所有文法均是二义的（不存在无二义文法）
+
+题目：${n_0=n_1}$
+
+![image-20220616135620976](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616135620976.png)
+
+![image-20220616135717961](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616135717961.png)
+
+## Chapter 9
+
+栈可以为空（可以把栈底符号弹出来），但空栈以后就不可以转移了
+
+转移时可以有$\epsilon,\epsilon\to \epsilon$
+
+PDA是非确定的，转移的是一个集合
+
+![image-20220616141037752](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616141037752.png)
+
+$\Sigma和\Gamma$不一定无交
+
+终态型PDA接受字符串：所有字符串输入完毕且落在一个终态上
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616141600641.png" alt="image-20220616141600641" style="zoom:67%;" />
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616142232941.png" alt="image-20220616142232941" style="zoom:67%;" />
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616142618312.png" alt="image-20220616142618312" style="zoom:67%;" />
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616142711767.png" alt="image-20220616142711767" style="zoom:67%;" />
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616142803868.png" alt="image-20220616142803868" style="zoom:67%;" />
+
+即时描述$(q,w,\alpha)$，其中w是还未输完的串，$\alpha$是栈底符号串；传递和传递闭包$\vdash、\vdash^*$
+
+终态型PDA语言：$\{w|(q_0,w,Z_0)\vdash ^*  (q_f,\epsilon, \alpha),q_f\in F,\alpha\in \Gamma^*\}$
+
+空栈型PDA语言：$\{w|(q_0,w,Z_0)\vdash ^*  (q,\epsilon, \epsilon),q\in Q\}$
+
+![image-20220616144331577](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616144331577.png)
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616144345986.png" alt="image-20220616144345986" style="zoom:80%;" />
+
+总结，都要添加一个状态并且**改栈底符号为$X_0$**，添加转移$\epsilon,X_0/ Z_0X_0$
+
+![image-20220616145017241](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616145017241.png)
+
+添加$\delta(q,\epsilon,S)=\{(q,\Sigma^*)\}$，注意添加$\delta(q,v,v)=\{(q,\epsilon)\}$
+
+## Chapter 10
+
+确定下推自动机：与PDA只有转移函数上的不同
+
+* **约束**：**栈顶符号不能为空**、**输入符号为空和不为空互斥**（只能有一个）、转移的状态唯一
+
+![image-20220616151919402](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616151919402.png)
+
+**注意输入符号为空的互斥条件仅限于相同栈顶元素的条件下**：
+
+* $\delta(q,\epsilon,X)与\delta(q,a,X)$互斥
+* $\delta(q,\epsilon,X)与\delta(q,a,Y)$不互斥
+
+确定性上下文无关语言：终态型DPDA语言
+
+$\{0^n1^n|n\ge 1\}$既是终态型DPDA语言，也是空栈型DPDA语言
+
+$\{ww^R\}$不是DPDA语言，证明了DPDA<PDA
+
+$\{wcw^R\}$是DPDA语言，但不是正则语言，证明了正则<DPDA（正则显然是DPDA语言）
+
+**前缀性质：语言中没有两个元素使得其中一个是另一个前缀**
+
+**空栈型DPDA定理（充要）**：
+
+* 一个语言是空栈型DPDA语言，当且仅当   1）有前缀性质     2）是某终态型DPDA语言
+* 空栈型DPDA与正则语言无关，因为$\{wcw^R\}$是KDPDA但不正则，$\{0^*\}$正则但不是KDPDA
+
+判断KDPDA：前缀性质
+
+判断DFA/CFG：泵引理
+
+定理：
+
+* L是空栈型DPDA语言，则L有一个无二义性文法G使L(G)=L：由空栈型PDA构造CFG过程看出
+* L是终态型DPDA语言，则L有一个无二义性文法G使L(G)=L：在L每个元素后面添加\$变成空栈型DPDA语言，CFG中添加$S\to \epsilon$
+
+另一方面，$\{ww^R\}$为非固有二义的，因此包含是真包含
+
+综上：
+
+**KDPDA<DPDA<非固有二义CFG<CFG=PDA**
+
+**DFA<DPDA<非固有二义CFG<PDA=CFG**
+
+
+
+### CFG的化简
+
+**消除$\epsilon$产生式**
+
+可空符号：$A\xRightarrow{*}\epsilon$，A是变量；归纳，若产生式B的右边均是可控符号，则B也是
+
+消除可空符号：对于每个产生式$A\to A_1\cdots A_n$，若m<n个为可空符号则扩写成$2^m$项，m=n则$2^{m-1}$项
+
+定理：消除后的语言是$L(G)-\{\epsilon\}$
+
+**消除单一产生式**
+
+单一产生式：$A\to B$，其中AB均为非终结符
+
+单一偶对(A,B)：$A\xRightarrow{*}B$路径上全部都为单一产生式
+
+![image-20220616163424789](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616163424789.png)
+
+**消除无用产生式**
+
+有用符号：X在一条$S\xRightarrow{*}w$的路径上；**有用符号既包括变量，也包括终结符**
+
+无用产生式：含有无用符号的产生式
+
+产生符号：$X\xRightarrow{*}w$；可达符号：$S\xRightarrow{*}\alpha X\beta$
+
+有用符号$\Rightarrow $产生符号、可达符号（反之不成立）
+
+先消去非产生、再消去非可达        
+
+* 画面：     S  ———>$\alpha$———>√
+
+  ​                                 $\beta$———>×
+
+**化为Chomsky范式**
+
+Chomsky范式**（CNF）**：1）G中不含无用符号；2）产生式P只有两种形式：$A\to BC\ /\ A\to a$
+
+注意：消除无用符号可以在其中穿插反复进行
+
+![image-20220616164307710](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616164307710.png)
+
+## Chapter 11
+
+CFL泵引理：
+
+$\forall m\exists z(z\in L\wedge |z|\ge m\wedge(\forall u,v,w,x,y)(\exists k)(z=uvwxy\wedge vx\neq \epsilon \wedge |vwx|\le m\to uv^kwx^ky\notin L))$
+
+![image-20220616165149593](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616165149593.png)
+
+例子：$\{ww\}、\{0^n1^n2^n\}$不是CFL
+
+**CFL封闭运算：**并、星闭包、连接、反转
+
+**非封闭运算：**交、补、差
+
+替换：$s:\Sigma\to \mathcal{L}$
+
+定理：设$\forall a\in \Sigma , s(a)是CFL$，若L是$\Sigma$上的CFL，则s(L)是CFL
+
+定理：设L是CFL，则h(L)（h^-1^(L) ）均是CFL
+
+**正则闭性质：CFL和正则语言的交为CFL**（在此基础上**交运算**也封闭）
+
+例题：$L=\{a^nb^n|n\neq 100\}$是CFL，取正则语言L={$a^{100}b^{100}$}，它的补为L={$w|w\neq a^{100}b^{100}$}，与CFL$\{a^nb^n\}$交得证
+
+例题：$L=\{n_an_bn_c\}$不是CFL，假设成立，取正则语言$\{a^*b^*c^*\}$归谬，二者交为$\{a^nb^nc^n\}$是CFL，显然不正确
+
+## Chapter 12
+
+空语言问题：检查语言是否为空，则判断开始变量是否无用
+
+无限语言问题：进行CFG的化简，之后构造变量依赖图，判断是否有环
+
+语言元素问题：**CYK解析算法 O(n^3^)**
+
+![image-20220616184902009](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616184902009.png)
+
+CFL不可判定问题：
+
+CFG是否歧义、CFL是否固有二义、CFL相交是否为空（交自动机）、CFL是否相等（并自动机看初态是否可区分）、CFL是否是$\Sigma^*$
+
+![image-20220616185457790](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616185457790.png)
+
+TM的注意事项：
+
+* 初始时读头位于输入串最左  
+* 输入串不为空  
+* TM机默认是确定TM的
+* 状态转移是一个元素（三元组）而非集合，不允许$\epsilon$转移
+* 接受输入：输入完字符串，TM停在某终态（反之停在非终态、进入无限循环（我们假定到终态即停机，可以证明任何一个图灵机都等价于一个到终态即停机的TM））
+* 注意，图灵机可以不接收完输入串
+
+![image-20220616190214444](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616190214444.png)
+
+![image-20220616192149853](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616192149853.png)
+
+![image-20220616192441202](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616192441202.png)
+
+![image-20220616192954835](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616192954835.png)
+
+![image-20220616193006370](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616193006370.png)
+
+总结一下：状态右边一定要有符号，与状态右边无关的空白符可以删去
+
+**递归可枚举语言：**有定理称任何图灵机都可以转化为到达终态就停机的图灵机（根据原来的定义，有可能还会继续，以后假定到达终态一定停机
+
+**递归语言**：对于任何不属于L(M)的字符串也可以使得M停机。递归语言对应的问题是可判定的。
+
+## Chapter 13
+
+单位制：00000（十进制的5）
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616202920979.png" alt="image-20220616202920979" style="zoom:67%;" />
+
+f可计算：$\forall w\in D,有f:q_0w\vdash^* q_ff(w)$，例如$f(x,y)=x+y$，输入x1y则输出xy1（单位制下）
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616203335620.png" alt="image-20220616203335620" style="zoom:80%;" />
+
+![image-20220616204945569](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616204945569.png)
+
+**计算后要回到初始状态**
+
+
+
+![image-20220616205335598](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616205335598.png)
+
+相当于对**状态**进行扩展，扩展为q'=[q,a,b,c]，但存储区只能有有限个
+
+![image-20220616205441948](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616205441948.png)
+
+相当于对**带符号**进行扩展，带符号变为[X,Y,Z]
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616205824465.png" alt="image-20220616205824465" style="zoom:80%;" />
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616210148280.png" alt="image-20220616210148280" style="zoom:80%;" />
+
+多带图灵机：第一条带处于输入符号的最左端，其余读头任意放置；**k条带可用2k通道的TM模拟**
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616210451340.png" alt="image-20220616210451340" style="zoom:67%;" />
+
+语言L$\{a^nb^n\}$；标准图灵机O(n^2^)，2带O(n)
+
+![image-20220616210936325](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616210936325.png)
+
+2维TM用二通道模拟
+
+非确定图灵机：转移映射到一个三元组集合
+
+![image-20220616211233514](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616211233514.png)
+
+可以用一个二维图灵机模拟，每一步复制当前结构并改变副本中的状态
+
+**两道半无限带机**可以模拟TM
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616212300520.png" alt="image-20220616212300520" style="zoom:67%;" />
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616212322015.png" alt="image-20220616212322015" style="zoom:67%;" />
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616212337317.png" alt="image-20220616212337317" style="zoom:67%;" />
+
+**多栈机**
+
+k个栈的多栈机可以用k+1个带的多带图灵机模拟（其中一个用来扫描输入）
+
+一个双栈机可以模拟标准图灵机：一个堆栈模拟读头左边单元格，一个模拟右边
+
+**计数器机**
+
+计数器机只有两个栈符号$Z_0,X$，$X$只能被替换为$X^i$，$Z_0$只能被替换为$X^iZ_0$
+
+**定理**：一个计数器的计数器机语言接受能力相当于确定下推自动机KDPA；两个相当于图灵机
+
+## Chapter 14
+
+**图灵机编码**：
+
+![image-20220616213653009](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616213653009.png)
+
+假定
+
+* 字母表为0,1
+* 初态1，终态2
+* 带符号  0编码1 1编码2  B编码3
+* 带头移动  L编码1  R编码2
+
+![image-20220616213906597](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616213906597.png)
+
+**输入字符串w编码**：1w，(Eg: 0000000对应128个输入字符串)
+
+对角线语言：$L_d=\{w_i|w_i\notin L(M_i)\}$，不是递归可枚举语言
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616214320767.png" alt="image-20220616214320767" style="zoom:67%;" />
+
+通用语言：$L_U$  $M_i111w_i$，递归可枚举语言
+
+<img src="C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616214451560.png" alt="image-20220616214451560" style="zoom: 80%;" />
+
+***语言非空图灵机是不可判定的，但是是RE的***
+
+![image-20220616220043385](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616220043385.png)
+
+则语言为空图灵机非RE
+
+RICE引理描述的是图灵机编码的性质，即它是将一些接受特定语言的图灵机挑出来
+
+* 一台图灵机接受的语言是否是正则语言/CFL均是不可判定的
+
+定理：
+
+* 递归语言的补也是递归语言
+* 若语言L和L的补都是递归可枚举语言，则二者均是递归语言
+
+定义：
+
+* 若一个问题对应的语言是递归语言，则可判定，否则不可判定
+* 若一个问题对应的语言是递归可枚举语言，则称为**部分可判定**
+
+问题P1到P2的简约：$P_1\le_T P_2$，则$P_2可判定/部分可判定\Rightarrow P_1也；P_1不可判定/非RE\Rightarrow P_2也$
+
+图灵机停机问题：任给图灵机M和字符串w，问是否停机——不可判定
+
+![image-20220616221643614](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616221643614.png)
+
+![image-20220616221658416](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616221658416.png)
+
+该问题不是可判定问题
+
+![image-20220616222023344](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616222023344.png)
+
+非确定图灵机时间复杂度：树高
+
+![image-20220616222047727](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220616222047727.png)
+
+复杂度归约$P_1\le _P P_2$
+
+* 若P2是P问题，则P1也是；**若P2是NP问题，则P1也是**
+* **若P1不是P问题，则P2也不是；若P1不是NP问题，则P2也不是**
+
+NP-hard：任何一个NP问题都可以简约到该问题上
+
+如果可以证明某个NPC是P的，则有P=NP
+

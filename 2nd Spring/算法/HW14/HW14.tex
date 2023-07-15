@@ -1,0 +1,105 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath}
+\usepackage{diagbox}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{adjustbox}
+\usepackage{subfigure}
+\usepackage{geometry}
+\usepackage{pifont}
+\usepackage{gensymb}
+\usepackage{bm}
+\usepackage{tikz}
+\usepackage{amstext}
+\usepackage{amsfonts}
+
+%引入代码块
+\usepackage{listings}
+
+\usepackage{xcolor}
+%设置代码块格式
+
+\definecolor{CPPGray}{RGB}{211,211,211}
+\lstset{
+ columns=fixed,       
+ numbers=left,   % 在左侧显示行号
+ numberstyle=\tiny\color{gray},% 设定行号格式
+ frame=none,%none,% 不显示背景边框
+ %aboveskip=1em,
+ backgroundcolor=\color[RGB]{230,230,230},% 设定背景颜色
+ keywordstyle=\color[RGB]{40,40,255},% 设定关键字颜色
+ numberstyle=\footnotesize\color{darkgray},           
+ commentstyle=\it\color[RGB]{0,96,96},% 设置代码注释的格式
+ stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},% 设置字符串格式
+ showstringspaces=true,% 不显示字符串中的空格
+ language=c++, % 设置语言
+ morekeywords = {include,ull,int,double,return,static,typedef,if,else,for,long,void,class,struct,ll},                % 自加新的关键字（必须前后都是空格）
+}
+
+\begin{document}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\newgeometry{left=2cm,bottom=3cm,right=2cm}
+\linespread{1.4}
+\title{\vspace{-5em}\heiti算法分析与设计基础\ \ 第十五周作业\vspace{-2.5em}}
+\date{}
+\maketitle
+\begin{center}
+{\fangsong 徐浩博\quad 软件02\quad2020010108}
+\end{center}
+
+\paragraph*{Problem\ \ 1\ \ }\ \par
+算法如下：\par
+辅助数/数组/链表：max\_num：当前剩余节点数最多的集合的剩余节点数；node\_list[v]：包含点v的所有set的链表；left\_node\_num[$S_i$]：$S_i$的剩余节点数；left\_num\_list[i]：剩余节点数为i的所有set的链表.
+
+\begin{lstlisting}[mathescape=true]
+for each $ S_i$ in F:
+    for each v in $S_i$:
+        node_list[v].insert($S_i$)
+    left_node_num[$S_i$] = $|S_i|$
+    left_num_list[$S_i$].insert($S_i$)
+    max_num = max(max_num, $|S_i|$)
+
+while max_num > 0:
+    while true:
+        if left_num_list[max_num] is empty:
+            break
+        head = left_num_list[max_num].head
+        if left_node_num[head] != max_num:
+            left_num_list[head].insert(head)
+        else:
+            for each v in head:
+                for s in node_list[v]:
+                    left_node_num[s] -= 1
+                clear node_list[v]
+        delete head from left_num_list[max_num]
+    max_num -= 1
+\end{lstlisting}
+大概思路是：创建一个剩余节点数分别为1-max\_num这max\_num个链表，每个链表i内放置剩余节点数i的set；每次从max\_num中拿出一个头结点set，如果该set内剩余节点数已经变化，则将其插入对应的剩余节点数链表里，否则就要将该set内的点全部删去，同时更新各个其他set剩余节点数（注意，不是在剩余节点数链表中直接更新，而是用一个数组储存当前set剩余节点数）.\par
+该算法是$O(\sum_{S\in F}|S|)$的，原因是我们剩余节点数链表，每次对头结点进行操作：如果set内剩余节点数已经变化，那么操作复杂度是O(1)的，我们将这个复杂度归结到使set内剩余节点数变化的原因上（节点被删去）；如果set内剩余节点仍是max\_num，那么就要删去该set内全部剩余节点，删除每个节点时需要更新所有包含该节点的set，每次更新O(1)，这里可以将使set剩余节点数变化，头结点到达该set时需要O(1)更新的代价也加进来，一共也是O(1)的. 因此，总代价可以看成每个点在所有包含该节点的set内进行的O(1)操作，是$O(1)\times \sum_{S\in F}|S|=O(\sum_{S\in F}|S|)$的.
+
+\paragraph*{Problem\ \ 2\ \ }\ \par
+\begin{lstlisting}[mathescape=true]
+APPROX-SUBSET-SUM(S, t, $\epsilon$):
+    n = $|S|$
+    $L_0$ = <0>
+    for i = 1 to n:
+        for each (e, set) in $L_{i-1}$:
+            new_e = e + $x_i$
+            pre[new_e] = $x_i$
+            $L_i$.insert(new_e)
+        $L_i$ = TRIM($L_i$, $\epsilon$/2n)
+        remove from $L_i$ every element that is greater than t
+    let $z^*$ be the largest value in $L_n$
+
+    S = $\emptyset$
+    while $z^*$ > 0:
+        S.insert(pre$[z^*]$)
+        $z^*$ = $z^*$ - pre[$z^*$]
+    return S        
+\end{lstlisting}
+即我们记录$L_i$内每个新产生元素的前驱$x_i$，最后的集合如13-17行，通过前驱获知每一步加入的数. 显然，并没有改变原有程序的复杂度.
+
+\end{document}
+

@@ -1,0 +1,15 @@
+![image-20220617014144961](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220617014144961.png)
+
+![image-20220617014325339](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220617014325339.png)
+
+![image-20220617014339480](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220617014339480.png)
+
+![image-20220617021422763](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220617021422763.png)
+
+![image-20220617025842441](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220617025842441.png)
+
+双带图灵机：接受$\{w2w|w\in\{0,1\}^*\}$
+
+![image-20220617094539261](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220617094539261.png)
+
+![image-20220617113744984](C:\Users\Xsu1023\AppData\Roaming\Typora\typora-user-images\image-20220617113744984.png)
