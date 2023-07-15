@@ -1,0 +1,56 @@
+# 2020010108 徐浩博
+    .pos 0 
+init:	irmovl Stack, %esp  	
+	irmovl Stack, %ebp  	 
+	call Main		        # Main()
+	halt			
+
+# Array of 4 elements
+	.align 4 	
+ele1:
+    .long 0x00a
+    .long ele2
+ele2:
+    .long 0x0b0
+    .long ele3
+ele3:
+    .long 0xc00
+    .long 0
+
+Main:	pushl %ebp 
+	rrmovl %esp, %ebp
+	irmovl ele1, %ebx       # %ebx = ele1
+    pushl %ecx
+    pushl %edx              # store caller registers
+    pushl %ebx              # push ele1 as param
+    call sum_list           # sum_list(ele1), %eax as ret value
+    pushl %edx
+    pushl %ecx              # restore caller registers
+    rrmovl %ebp, %esp
+    popl %ebp               # leave
+    ret
+sum_list: pushl %ebp
+    rrmovl %esp, %ebp
+    pushl %ebx
+    pushl %esi
+    pushl %edi              # store callee registers
+    mrmovl 8(%ebp), %esi    # get param value: ls
+    irmovl 0, %eax          # val = 0
+loop:
+    andl %esi, %esi
+    je end                  # if (!ls) jmp to end
+    mrmovl (%esi), %edx
+    addl %edx, %eax         # val += ls -> val
+    mrmovl 4(%esi), %edi    
+    rrmovl %edi, %esi       # ls = ls -> next
+    jmp loop                # continue loop
+end:
+    popl %edi
+    popl %esi
+    popl %ebx               # restore callee registers
+    rrmovl %ebp, %esp
+    popl %ebp               # leave
+    ret
+
+.pos 0x400		
+Stack:

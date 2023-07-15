@@ -1,6 +1,12 @@
 .vscode/
 .vs/
 .idea/
+.gradle/
+.DS_Store
+node_modules
+dist/
+build/
+
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user

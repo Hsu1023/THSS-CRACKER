@@ -1,0 +1,62 @@
+# 2020010108 徐浩博
+    .pos 0 
+init:	irmovl Stack, %esp  	
+	irmovl Stack, %ebp  	 
+	call Main		        # Main()
+	halt			
+
+# Array of 4 elements
+	.align 4 	
+ele1:
+    .long 0x00a
+    .long ele2
+ele2:
+    .long 0x0b0
+    .long ele3
+ele3:
+    .long 0xc00
+    .long 0
+
+Main:	pushl %ebp 
+	rrmovl %esp, %ebp
+	irmovl ele1, %ebx       # %ebx = ele1
+    pushl %ecx
+    pushl %edx              # store caller registers
+    pushl %ebx              # push ele1 as param
+    call rsum_list          # sum_list(ele1), %eax as ret value
+    pushl %edx
+    pushl %ecx              # restore caller registers
+    rrmovl %ebp, %esp
+    popl %ebp               # leave
+    ret
+
+rsum_list: pushl %ebp
+    rrmovl %esp, %ebp
+    pushl %ebx
+    pushl %esi
+    pushl %edi              # store callee registers
+    mrmovl 8(%ebp), %esi    # get param value: ls
+    andl %esi, %esi
+    je init_condition       # if (!ls) jmp (for returning)
+
+    mrmovl (%esi), %ebx     # %ebx = ls->val
+    mrmovl 4(%esi), %edi    # %edi = ls->next
+    pushl %ebx              # push ls->val for storing
+    pushl %edi              # push ls->next as param
+    call rsum_list          # rsum_list(ls->next)
+    popl %edi               # restore ls->next
+    popl %ebx               # restore ls->val
+    addl %ebx, %eax         # return val: rest = rest + ls->val 
+    jmp end
+init_condition:
+    irmovl $0, %eax         # return 0
+end:
+    popl %edi               
+    popl %esi
+    popl %ebx               # restore callee registers
+    rrmovl %ebp, %esp
+    popl %ebp               # leave
+    ret
+
+.pos 0x400		
+Stack:

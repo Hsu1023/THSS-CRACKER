@@ -1,0 +1,39 @@
+image: autojudger23
+cache:
+  key: "$CI_COMMIT_SHA"
+  paths:
+    - bin/
+    - testcases/
+
+stages:
+  - build
+  - prepare_data
+  - test
+
+build:
+  stage: build
+  script:
+    - if [ -d 'bin' ]; then rm -r bin; fi
+    - echo "Build starts..."
+    - dotnet build -c Release
+    - echo "Build finished."
+
+
+prepare_data:
+  stage: prepare_data
+  script:
+    - echo "Test starts..."
+    - echo "Getting the latest test cases..."
+    - if [ -d 'testcases' ]; then rm -r testcases; fi
+    - git clone https://cminor-testcases:o-8Yxyc9qYQpJcTZu496@git.tsinghua.edu.cn/software-verification-23/cminor-testcases.git
+    - mv cminor-testcases testcases
+    - ls testcases
+    - echo "Latest test cases got."
+
+test:
+  stage: test
+  script:
+    - echo "Running the tests..."
+    - ls testcases
+    - python3 testcases/test.py
+    - echo "Test finished."

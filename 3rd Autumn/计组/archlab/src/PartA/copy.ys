@@ -1,0 +1,68 @@
+# 2020010108 徐浩博
+    .pos 0 
+init:	irmovl Stack, %esp  	
+	irmovl Stack, %ebp  	 
+	call Main		        # Main()
+	halt			
+
+# Array of 4 elements
+	.align 4 	
+src:
+    .long 0x00a
+    .long 0x0b0
+    .long 0xc00
+dest:
+    .long 0x111
+    .long 0x222
+    .long 0x333
+
+Main:	pushl %ebp 
+	rrmovl %esp, %ebp
+    pushl %ecx
+    pushl %edx              # store callee registers
+
+	irmovl src, %ebx
+    pushl %ebx              # push param: *src
+    irmovl dest, %ebx
+    pushl %ebx              # push param: *dest
+    irmovl $3, %ebx
+    pushl %ebx              # push param: len = 3
+    call copy_block         
+    pushl %edx
+    pushl %ecx              # restore callee registers
+    rrmovl %ebp, %esp       
+    popl %ebp               # leave
+    ret
+
+copy_block: pushl %ebp
+    rrmovl %esp, %ebp
+    pushl %ebx
+    pushl %esi
+    pushl %edi              # store callee registers
+    mrmovl 8(%ebp), %ecx    # %ecx = len
+    mrmovl 12(%ebp), %edi   # %edi = dest
+    mrmovl 16(%ebp), %esi   # %esi = src
+    irmovl 0, %eax          # result = 0
+loop:
+    andl %ecx, %ecx
+    je end                  # if (!len) jmp to return
+
+    irmovl $4, %edx         
+    mrmovl (%esi), %ebx     # val = *src
+    addl %edx, %esi         # src ++
+    rmmovl %ebx, (%edi)     # *edi = val
+    addl %edx, %edi         # dst ++
+    xorl %ebx, %eax         # result ^= val
+    irmovl $1, %edx
+    subl %edx, %ecx         # len --
+    jmp loop                # continue loop
+end:
+    popl %edi
+    popl %esi
+    popl %ebx               # restore callee registers
+    rrmovl %ebp, %esp
+    popl %ebp               # leave
+    ret
+
+.pos 0x400		
+Stack:

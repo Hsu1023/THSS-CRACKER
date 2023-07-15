@@ -1,0 +1,19 @@
+.386
+.model flat, stdcall
+option casemap:none
+
+includelib      msvcrt.lib
+printf          PROTO C :ptr sbyte, :VARARG
+
+.data
+nameMsg			byte    "ÐÕÃû£ºÐìºÆ²©", 0ah, 0dh, 0
+idMsg			byte    "Ñ§ºÅ£º2020010108", 0ah, 0dh, 0
+classMsg		byte    "°à¼¶£ºÈí¼þ02", 0ah, 0dh, 0
+
+.code
+start:
+                invoke  printf, offset nameMsg
+                invoke  printf, offset idMsg
+                invoke  printf, offset classMsg
+                ret
+end				start

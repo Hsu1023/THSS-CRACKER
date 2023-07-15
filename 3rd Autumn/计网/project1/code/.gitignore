@@ -1,0 +1,12 @@
+pox.hpp
+pox.cpp
+.DS*
+router
+*.o
+*.dSYM
+.vagrant
+build/
+.vscode/
+**/nohup.out
+details.log
+*.pyc

@@ -1,0 +1,15 @@
+# 2020010108 徐浩博
+    .pos 0 
+init:	irmovl Stack, %esp  	
+	irmovl Stack, %ebp  	 
+    irmovl $3, %eax
+    irmovl $5, %ebx
+    irmovl $1, %ecx
+    pushl %eax
+    rmxchg %ebx, $0(%esp) 
+    addl %ecx, %ebx
+    popl %eax
+	halt
+
+.pos 0x400		
+Stack:
