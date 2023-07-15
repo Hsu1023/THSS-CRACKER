@@ -1,0 +1,13 @@
+mov a1 1
+mov a2 1
+mov a0 0
+mov a3 51
+jal sum
+sum:
+add a0,a0,a1
+call inc
+blt a1,a3,sum
+end
+inc:
+add a1,a1,a2
+ret

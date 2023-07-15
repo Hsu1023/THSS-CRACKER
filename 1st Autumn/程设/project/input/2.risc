@@ -1,0 +1,17 @@
+mov t0,x0
+mov t1,1
+mov t2,16
+jal loop
+draw
+loop:
+store t1,t0
+call calnext
+bne t2,x0,loop
+draw
+end
+calnext:
+add t1,t1,1
+sub t2,t2,1
+add t0,t0,0x40000
+draw
+ret

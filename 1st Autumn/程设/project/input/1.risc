@@ -1,0 +1,13 @@
+mov t0,0x1234
+mov t1,0xabcd
+add t2,t0,t1
+sub t3,t1,t0
+mul t4,t1,t0
+push t0
+rem t5,t1,t0
+div t6,t1,t0
+and t0,t2,t3
+or t1,t4,t5
+pop t2
+draw
+end

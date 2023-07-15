@@ -1,0 +1,44 @@
+mov a0 0
+mov a1 1
+mov a2 1000000
+mov x0 0
+mov x1 2
+mov x2 4
+mov x3 10
+mov x31 0
+jal start
+start:
+mul x31 x1 4
+store a1 x31
+add x1 x1 1
+bge a2 x1 start
+mov x1 1
+jal loop
+loop:
+add x1 x1 1
+mul x2 x1 x1
+blt a2 x2 over
+mul x31 x1 4
+load x0 x31
+bne x0 a1 loop
+call func
+jal loop
+func:
+mul x31 x2 4
+store a0 x31
+add x2 x2 x1
+bge a2 x2 func
+ret
+over:
+mov x1 1
+call write
+draw
+end
+write:
+add x1 x1 1
+mul x31 x1 4
+load x30 x31
+store x30 x1
+load a0 x31
+bge a2 x1 write
+ret
